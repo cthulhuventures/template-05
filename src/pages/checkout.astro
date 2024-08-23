@@ -1,0 +1,668 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Api } from "../backend/api";
+
+let error = ''
+const year = new Date().getFullYear()
+const sessionId = Astro.cookies.get('__s')?.value
+const cartProductsString = Astro.cookies.get('cartCookie')?.value;
+let cartProducts;
+if (cartProductsString) {
+  try {
+    cartProducts = JSON.parse(cartProductsString);
+  } catch (error) {
+    console.error('Failed to parse cartProducts:', error);
+    // Handle the error appropriately, maybe set cartProducts to an empty array or show an error message
+  }
+}
+const api = new Api()
+if (Astro.request.method === 'POST') {
+	const data = await Astro.request.formData()
+	const formType = data.get('type')
+    if (formType === 'payment-form') {
+      let userLead: any = {};
+      userLead.firstName = data.get('shippingFirstName');
+      userLead.lastName = data.get('shippingLastName');
+      userLead.address1 = data.get('shippingAddress1');
+      userLead.address2 = data.get('shippingAddress2');
+      userLead.city = data.get('shippingCity');
+      userLead.state = data.get('shippingState');
+      userLead.postalCode = data.get('shippingZipCode');
+      userLead.email = data.get('shippingEmail');
+
+      const lead = await api.importLead({
+        sessionId: sessionId || '',
+        firstName: userLead.firstName,
+        lastName: userLead.lastName,
+        address1: userLead.address1 || '',
+        address2: userLead.address2 || '',
+        zipCode: userLead.postalCode || '',
+        city: userLead.city || '',
+        state: userLead.state,
+        emailAddress: userLead.email,
+      });
+      Astro.cookies.set(
+        '__u',
+        JSON.stringify({ ...lead.message, productId: userLead.productId }), {
+          path: '/'
+        }
+      );
+      const user = lead.message;
+      if (!user.orderId || user.orderId === undefined) {
+        return Astro.redirect('/lp');
+      }
+
+      const checkout: any = {
+        sessionId,
+        orderId: user.orderId,
+        cardNumber: data.get('cardNumber'),
+        cardSecurityCode: data.get('cardCvv'),
+        cardMonth: data.get('ccMonth'),
+        cardYear: data.get('ccYear'),
+        product1_id: user.orderId,
+        salesUrl: Astro.request.url,
+      };
+      if (data.get('checkBillingAddress') === 'on') {
+        checkout.billShipSame = true;
+        checkout.firstName = user.firstName;
+        checkout.lastName = user.lastName;
+        checkout.emailAddress = user.emailAddress;
+        checkout.address1 =
+          user.address1 === 'undefined' ? '' : user.address1 || '';
+        checkout.address2 =
+          user.address2 === 'undefined' ? '' : user.address2 || '';
+        checkout.city = user.city === 'undefined' ? '' : user.city || '';
+        checkout.state = user.state;
+        checkout.postalCode =
+          user.postalCode === 'undefined' ? '' : user.postalCode || '';
+      } else {
+        checkout.billShipSame = false;
+        checkout.firstName = data.get('billingFirstName');
+        checkout.lastName = data.get('billingLastName');
+        checkout.address1 = data.get('billingAddress');
+        checkout.city = data.get('billingCity');
+        checkout.state = data.get('billingProvince');
+        checkout.postalCode = data.get('billingZipCode');
+        checkout.shipFirstName = user.firstName;
+        checkout.shipLastName = user.lastName;
+        checkout.emailAddress = user.emailAddress;
+        checkout.shipAddress1 =
+          user.address1 === 'undefined' ? '' : user.address1 || '';
+        checkout.shipAddress2 =
+          user.address2 === 'undefined' ? '' : user.address2 || '';
+        checkout.shipCity = user.city === 'undefined' ? '' : user.city || '';
+        checkout.shipState = user.state;
+        checkout.shipPostalCode =
+          user.postalCode === 'undefined' ? '' : user.postalCode || '';
+      }
+
+      const response = await api.importOrder(checkout);
+      
+      const order =  await api.getOrder(user.orderId, checkout, cartProducts);
+      console.log(order.message.data[0])
+      Astro.cookies.set('getOrder', JSON.stringify(order.message.data[0]), {
+        path: '/'
+      });
+
+		switch (response.result) {
+      case 'ERROR':
+        error = response.message
+				break
+      
+      case 'SUCCESS':
+        error = ''
+        Astro.cookies.set('__u', JSON.stringify(response.message.orderId))
+        return Astro.redirect(`/thankyou/`)
+      default:
+        error = ''
+				return Astro.redirect(`/`)
+		}
+	}
+}
+---
+
+<Layout title="Checkout">
+  <body>
+    <div class="container">
+      <div class="checkout">
+        <!-- <h2>Trally-Theme (password: buddha)</h2> -->
+        
+        <form method="post" id="checkout-form" >
+          <input type="hidden" id="productId" name="productId" value="" />
+          <input type="hidden" id="type" name="type" value="payment-form">
+          <section class="contact">
+            <h3>Contact</h3>
+            <input type="email" id="shippingEmail" name="shippingEmail" placeholder="Email or mobile phone number" />
+          </section>
+
+          <section class="delivery">
+            <h3>Delivery</h3>
+            
+            <div class="name">
+              <input type="text" id="shippingFirstName" name="shippingFirstName" placeholder="First name" required />
+              <input type="text" id="shippingLastName" name="shippingLastName" placeholder="Last name" required />
+            </div>
+            <input 
+              type="text" 
+              id="shippingZipCode" 
+              name="shippingZipCode" 
+              class="form-control postal-code-input"
+              placeholder="Postal code"
+              pattern="^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][A-Za-z]{2}$"
+              title="Please, enter a valid Postal Code (e.g. KA19 5YB)"
+              maxlength="8"
+              required
+            />
+            <input type="text" id="shippingAddress1" name="shippingAddress1" placeholder="Address" />
+            <input
+              type="text"
+              id="shippingAddress2"
+              name="shippingAddress2"
+              placeholder="Apartment, suite, etc. (optional)"
+            />
+            <select id="country" name="country">
+              <option value="">Select a Country</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+            </select>
+            <div class="location">
+              <input type="text" placeholder="City" name="shippingCity" id="shippingCity" />
+              <select id="shippingState" name="shippingState">
+                <option value="">Select State</option>
+              </select>
+            </div>
+          </section>
+
+          <section class="payment">
+            <h3>Payment</h3>
+            <p>All transactions are secure and encrypted.</p>
+            <div class="credit-card">
+              <label for="cardNumber">Credit card</label>
+              <input type="text" id="cardNumber" name="cardNumber" placeholder="Card number" />
+              <span id="cardNumberError" style="color: red; display: none;">Invalid card number</span>
+              <div class="card-details">
+                <select 
+                  name="ccMonth"
+                  required
+                  id="ccMonth" 
+                  
+                  data-error-message="Please select a valid expiry month!"
+                >
+                    <option value="">Month</option>
+                    <option value="01">(01) January</option>
+                    <option value="02">(02) February</option>
+                    <option value="03">(03) March</option>
+                    <option value="04">(04) April</option>
+                    <option value="05">(05) May</option>
+                    <option value="06">(06) June</option>
+                    <option value="07">(07) July</option>
+                    <option value="08">(08) August</option>
+                    <option value="09">(09) September</option>
+                    <option value="10">(10) October</option>
+                    <option value="11">(11) November</option>
+                    <option value="12">(12) December</option>
+                </select>
+                <select 
+                  id="ccYear" 
+                  name="ccYear"
+                  required
+                  data-threeds="year" 
+                  required  
+                  data-error-message="Please select a valid expiry year!"
+                >
+                  {[...Array(20)].map((_, i) => <option value={year + i}>{year + i}</option>)}
+              </select>
+                <input type="text" id="cardCvv" name="cardCvv" placeholder="Security code" />
+              </div>
+              <input type="text" placeholder="Name on card" />
+              <label
+                ><input type="checkbox" id="checkBillingAddress" name="checkBillingAddress" checked /> Use shipping address as billing
+                address</label
+              >
+            </div>
+            <div id="billAddBox" class="billing-info">
+              <div class="form-row">
+                <div class="col-inf-title">
+                  <h4>Billing Address</h4>
+                </div>
+                <div class="col-forms-small">
+                  <input
+                    type="text"
+                    class="form-control billing-inputs"
+                    id="billingFirstName"
+                    name="billingFirstName"
+                    placeholder='First Name'
+                    
+                  />
+                </div>
+                <div class="col-forms-small">
+                  <input
+                    type="text"
+                    class="form-control billing-inputs"
+                    id="billingLastName"
+                    name="billingLastName"
+                    
+                    placeholder='Last Name'
+                  />
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-row">
+                  <div class="col-forms-large">
+                    <input
+                      type="text"
+                      class="form-control billing-inputs"
+                      id="billingAddress"
+                      name="billingAddress"
+                      placeholder='Address'
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-forms-large">
+                    <input
+                      type="text"
+                      class="form-control billing-inputs"
+                      id="billingAddress2"
+                      name="billingAddress2"
+                      placeholder='Apartment, suite, etc. (optional)'
+                      
+                    />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="col-forms-large">
+                    <input
+                      type="text"
+                      class="form-control billing-inputs"
+                      id="billingCity"
+                      name="billingCity"
+                      placeholder='City'
+                    />
+                  </div>
+                </div>
+                      
+                <select id="billingCountry" name="billingCountry">
+                  <option value="">Select a Country</option>
+                  <option value="United Kingdom">United Kingdom</option>
+                  <option value="Canada">Canada</option>
+                </select>
+
+                <div class="form-row">
+                  <div class="col-forms-small">
+                    <select id="billingProvince" name="billingProvince">
+                      <option value="">Select State</option>
+                    </select>
+                  </div>
+                  <div class="col-forms-small">
+                    <input 
+                      type="text" 
+                      id="billingZipCode" 
+                      name="billingZipCode"
+                      class="form-control postal-code-input"
+                      placeholder="Postal code"
+                      pattern="^[A-Za-z]{1,2}[0-9Rr][0-9A-Za-z]? [0-9][A-Za-z]{2}$"
+                      title="Please, enter a valid Postal Code (e.g. KA19 5YB)"
+                      maxlength="8"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <button type="submit" id="payment-form-submit-button" formnovalidate>Pay now</button>
+        </form>
+      </div>
+
+      <div class="summary" id="summary"></div>
+    </div>
+  </body>
+</Layout>
+<style is:inline>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* Estilo geral para todos os inputs e selects */
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border: 1px solid purple !important; /* Altera a cor da borda para roxo */
+    outline: none; /* Remove a borda padrão do foco */
+    box-shadow: 0 0 8px rgba(128, 0, 128, 0.5); /* Adiciona um brilho roxo ao redor do elemento */
+  }
+
+  .checkout,
+  .summary {
+    background-color: white;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+  }
+
+  .billing-info {
+		display: none;
+	}
+
+  .checkout {
+    flex: 1;
+    max-width: 600px; /* Decrease the width of the checkout section */
+  }
+
+  .summary {
+    flex: 1;
+    max-width: 400px; /* Increase the width of the summary section */
+    margin-left: 20px;
+  }
+
+  h2,
+  h3 {
+    margin-top: 0;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  input[type="checkbox"] {
+    margin-right: 5px;
+  }
+
+  button {
+    background-color: #7C2D86;
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  button:hover {
+    background-color: #B182B4;
+  }
+
+  .contact,
+  .delivery,
+  .shipping,
+  .payment {
+    margin-bottom: 20px;
+  }
+
+  .name,
+  .location,
+  .card-details {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .card-details input, select {
+    flex: 0 0 30%;
+  }
+
+  .name input,
+  .location input,
+  .location select {
+    flex: 1;
+  }
+
+  .summary .item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .summary .item img {
+    width: 130px;
+    margin-right: 20px;
+  }
+
+  .summary .details {
+    flex: 1;
+  }
+
+  .summary .price {
+    font-weight: bold;
+  }
+
+  .summary-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight: lighter;
+  }
+  .summary-description {
+    font-size: 14px;
+    color: #777;
+  }
+
+  .total p {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+  }
+
+  .material-icons {
+    color: #8a8a8a;
+  }
+
+  .total p:last-child {
+    font-weight: bold;
+  }
+
+  @media screen and (max-width: 768px) {
+    .summary {
+      margin: 10px;
+    }
+  }
+</style>
+
+<script is:inline src="/scripts/cart.js"></script>
+<script is:inline>
+  const statesByCountry = {
+    Canada: [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Nova Scotia",
+      "Ontario",
+      "Prince Edward Island",
+      "Quebec",
+      "Saskatchewan",
+      "Northwest Territories",
+      "Nunavut",
+      "Yukon",
+    ],
+    "United Kingdom": ["England", "Northern Ireland", "Scotland", "Wales"],
+  };
+
+  const countrySelect = document.getElementById("country");
+  const countryBilling = document.getElementById("billingCountry");
+  const stateSelect = document.getElementById("shippingState");
+  const stateBilling = document.getElementById("billingProvince");
+
+  countrySelect.addEventListener("change", function() {
+    const selectedCountry = countrySelect.value;
+    stateSelect.innerHTML = "<option value=''>Select State</option>"; // Reset the state options
+    if (selectedCountry && statesByCountry[selectedCountry]) {
+      stateSelect.disabled = false;
+      const states = statesByCountry[selectedCountry];
+      
+      // Populate the states dropdown
+      states.forEach(function(state) {
+        const option = document.createElement("option");
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+      });
+    } else {
+      stateSelect.disabled = true;
+    }
+  });
+
+  countryBilling.addEventListener("change", function() {
+    const selectedCountry = countryBilling.value;
+    stateBilling.innerHTML = "<option value=''>Select State</option>"; // Reset the state options
+    if (selectedCountry && statesByCountry[selectedCountry]) {
+      stateBilling.disabled = false;
+      const states = statesByCountry[selectedCountry];
+      
+      // Populate the states dropdown
+      states.forEach(function(state) {
+        const option = document.createElement("option");
+        option.value = state;
+        option.textContent = state;
+        stateBilling.appendChild(option);
+      });
+    } else {
+      stateBilling.disabled = true;
+    }
+  });
+
+  function listCart() {
+    const currentCart = getCart();
+    const summary = document.getElementById("summary");
+    let subtotal = 0;
+    let shipping = 0;
+    let listOfProducts = currentCart.map((product) => {
+      subtotal += product.total;
+      shipping += product.shippingPrice;
+      return `<div class="item">
+                    <img src=${product.productImage} alt="Treadmill" />
+                    <div class="details">
+                        <h4 class="summary-title">${product.productName}</h4>
+                        <p class="summary-description">128 lbs / 59 inch / 16 Miles</p>
+                        <p class="summary-description">Quantity: ${product.qty}</p>
+                    </div>
+                    <!-- <p class="price">$${product.totalPrice}</p> -->
+                    </div>
+                </div>`;
+    });
+    listOfProducts.push(`
+        <div class="total">
+            <p>Subtotal<i class="material-icons">$${subtotal.toFixed(2)}</i></p>
+            <p>Shipping<i class="material-icons">$${shipping.toFixed(2)}</i></p>
+            <p>Total<i class="material-icons">$${(subtotal + shipping).toFixed(2)}</i></p>
+        </div>
+    `);
+
+    summary.innerHTML = listOfProducts.join("");
+  }
+
+  listCart();
+</script>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+
+    const checkBillingAddress = document.querySelector("#checkBillingAddress");
+    checkBillingAddress?.addEventListener('change', (e) => {
+        e.preventDefault();
+        const billingInfo = document.querySelector('.billing-info')
+       
+        var billingInputs = document.querySelectorAll(
+          '.billing-info input[type="text"], .billing-info select'
+        )
+        if (e.target.checked) {
+          billingInfo.style.visibility = 'hidden';
+          billingInfo.style.display = 'none';
+  
+          billingInputs.forEach(function (input) {
+              input.removeAttribute('required');
+              input.style.visibility = 'hidden';
+          });
+        } else {
+          billingInfo.style.visibility = 'visible';
+          billingInfo.style.display = 'block';
+          billingInputs.forEach(function (input) {
+            input.setAttribute('required', 'required');
+            input.style.visibility = 'visible';
+            input.value = '';
+          });
+        }
+      })
+  
+    const paymentFormSubmitButton = document.getElementById(
+      "payment-form-submit-button"
+    );
+  
+    const form = document.getElementById("checkout-form");
+  
+    paymentFormSubmitButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      const cardNumberInput = document.getElementById('cardNumber');
+      const cardNumber = cardNumberInput.value.replace(/\D/g, ''); // Remove any non-digit characters
+      const isCardNumberValid = validateCardNumber(cardNumber);
+
+      const errorElement = document.getElementById('cardNumberError');
+
+      if (!isCardNumberValid) {
+        errorElement.style.display = 'inline';
+        return;
+      } else {
+        errorElement.style.display = 'none';
+      }
+
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      form.submit();
+    });
+
+    function validateCardNumber(number) {
+      if (!/^\d{13,19}$/.test(number)) {
+        return false;
+      }
+
+      let sum = 0;
+      let shouldDouble = false;
+
+      for (let i = number.length - 1; i >= 0; i--) {
+        let digit = parseInt(number.charAt(i));
+
+        if (shouldDouble) {
+          digit *= 2;
+          if (digit > 9) {
+            digit -= 9;
+          }
+        }
+
+        sum += digit;
+        shouldDouble = !shouldDouble;
+      }
+
+      return sum % 10 === 0;
+    }
+  });
+</script>

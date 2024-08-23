@@ -1,0 +1,149 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Contact Us">
+    <body id="contact-us" class="template-page">
+        <div id="cartDrawer" class="drawer drawerRight">
+           <div class="bingoCartTitle">
+              <span>Shopping cart</span>
+              <div class="close jsDrawerClose">
+                 <span>&times;</span>
+              </div>
+           </div>
+           <div id="cartContainer"></div>
+        </div>
+        <div id="pageContainer" class="isMoved">
+           <div id="shopify-section-bingo-header" class="shopify-section">
+              <Header/>
+           </div>
+           <main class="mainContent">
+              <section id="bingoBreadcrumbs">
+                 <div id="shopify-section-bingo-breacrumb-image" class="shopify-section">
+                    <div class="bingoBreadcrumbImage-contactus">
+                      <img class="img-responsive" alt="Banner Image" src="/imgs/banner-products2.png" /></div>
+                    <div class="container">
+                       <nav class="bingoBreadcrumbWrap">
+                          <div class="breadcrumbTitle">
+                             <h3>Contact us</h3>
+                          </div>
+                          <ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+                             <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                <a href="/" title="Back to the frontpage" itemprop="item">
+                                <span itemprop="name">Home</span>
+                                </a>
+                                <meta itemprop="position" content="1" />
+                             </li>
+                             <li class="active" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                                <span itemprop="item"><span itemprop="name">Contact us</span></span>
+                                <meta itemprop="position" content="2" />
+                             </li>
+                          </ol>
+                       </nav>
+                    </div>
+                 </div>
+              </section>
+              <section id="pageContent">
+                 <div class="container">
+                    <div class="pageContainer">
+                       <div id="shopify-section-bingo-template-contact" class="shopify-section">
+                          <div class="row">
+                             <div class="col-xs-12">
+                                <div class="contactInformation">
+                                   <div class="boxInformation one">
+                                      <div class="boxInformationImage">
+                                         <img class="img-responsive" alt="Bingo Max" src="//bingo-max.myshopify.com/cdn/shop/files/contact_icon1.png?v=1613160807" />
+                                      </div>
+                                      <div class="boxInformationContent">
+                                         <h3 class="infoTitle">Address</h3>
+                                         <div class="infoDesc">150 Elgin St, Ottawa, ON K2P 1L4, Canada</div>
+                                      </div>
+                                   </div>
+                                   <div class="boxInformation two">
+                                      <div class="boxInformationImage">
+                                         <img class="img-responsive" alt="Bingo Max" src="//bingo-max.myshopify.com/cdn/shop/files/contact_icon2.png?v=1613160807" />
+                                      </div>
+                                      <div class="boxInformationContent">
+                                         <h3 class="infoTitle">Phone</h3>
+                                         <div class="infoDesc">
+                                            <p>Phone: (855) 880-2548</p>
+                                         </div>
+                                      </div>
+                                   </div>
+                                   <div class="boxInformation three">
+                                      <div class="boxInformationImage">
+                                         <img class="img-responsive" alt="Bingo Max" src="//bingo-max.myshopify.com/cdn/shop/files/contact_icon3.png?v=1613160807" />
+                                      </div>
+                                      <div class="boxInformationContent">
+                                         <h3 class="infoTitle">Email</h3>
+                                         <div class="infoDesc">
+                                            <p>support@boosthealthstore.com</p>
+                                            <p>support@boosthealthstore.com</p>
+                                         </div>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                             <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                                <div class="pageContact">
+                                   <h1 class="bingoContactTitle">Contact us</h1>
+                                   <div class="pageContent">
+                                      <div class="rte">
+                                      </div>
+                                      <div class="formContactUs">
+                                         <form method="post" action="/contact-us" id="contact_form" accept-charset="UTF-8" class="contact-form">
+                                            <input type="hidden" name="form_type" value="contact" /><input type="hidden" name="utf8" value="✓" />
+                                            <div class="formContent">
+                                               <div class="form-group">
+                                                  <label for="ContactFormName" class="hidden-label">Name</label>
+                                                  <input type="text" id="ContactFormName" class="form-control" name="contact[name]" placeholder="Name" value="">
+                                               </div>
+                                               <div class="form-group">
+                                                  <label for="ContactFormEmail" class="hidden-label">Email</label>
+                                                  <input type="email" id="ContactFormEmail" class="form-control" name="contact[email]" placeholder="Email" value="">
+                                               </div>
+                                               <div class="form-group">
+                                                  <label for="ContactFormPhone" class="hidden-label">Phone Number</label>
+                                                  <input type="tel" id="ContactFormPhone" class="form-control" name="contact[phone-number]" placeholder="Phone Number" pattern="[0-9\-]*" value="">
+                                               </div>
+                                               <div class="form-group">
+                                                  <label for="ContactFormMessage" class="hidden-label">Message</label>
+                                                  <textarea rows="10" id="ContactFormMessage" class="form-control" name="contact[body]" placeholder="Message"></textarea>
+                                               </div>
+                                               <div class="form-button">
+                                                  <input type="submit" id="contactFormSubmit" class="btn btnbingoOne" value="Send Message">
+                                               </div>
+                                            </div>
+                                         </form>
+                                      </div>
+                                   </div>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </section>
+           </main>
+          <Footer/>
+        </div>
+     </div>
+  </body>
+</Layout>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    
+    const submit = document.getElementById("contactFormSubmit");
+    submit.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.alert("Thank you for your message!");
+      document.getElementById("ContactFormName").value = "";
+      document.getElementById("ContactFormEmail").value = "";
+      document.getElementById("ContactFormPhone").value = "";
+      document.getElementById("ContactFormMessage").value = "";
+    });
+  })
+</script>

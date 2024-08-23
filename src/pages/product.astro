@@ -36,8 +36,8 @@ const products = await api.getPrice();
               <img
                 class="img-responsive"
                 id=""
-                alt="Bingo Max"
-                src="/imgs/products.png"
+                alt="Banner image"
+                src="/imgs/banner-products1.png"
               />
             </div>
             <div class="container">
@@ -84,14 +84,6 @@ const products = await api.getPrice();
                 itemscope
                 itemtype="http://schema.org/Product"
               >
-                <!-- <meta
-                  itemprop="url"
-                  content="https://bingo-max.myshopify.com/products/curabitur-semper-odio"
-                />
-                <meta
-                  itemprop="image"
-                  content="//bingo-max.myshopify.com/cdn/shop/products/3_1_grande.jpg?v=1498019620"
-                /> -->
                 <div class="proBoxPrimary">
                   <div class="row">
                     <div class="proBoxImage col-xs-12 col-sm-12 col-md-5">
@@ -108,19 +100,10 @@ const products = await api.getPrice();
                       <h1 itemprop="name" id="product-name"></h1>
                       <div class="proReviews">
                         <span
-                          class="shopify-product-reviews-badge"
-                          data-id="9684507336"></span>
+                          class="shopify-product-reviews-badge"></span>
                       </div>
                       <div
-                        itemprop="offers"
-                        itemscope
-                        itemtype="http://schema.org/Offer"
                       >
-                        <meta itemprop="priceCurrency" content="USD" />
-                        <link
-                          itemprop="availability"
-                          href="http://schema.org/InStock"
-                        />
                         <div class="ratings-container">
                           <div class="ratings">
                             <div class="ratings-val" style="width: 80%"></div>
@@ -141,10 +124,10 @@ const products = await api.getPrice();
                           <label>Availability</label>: In stock
                         </p>
                         <p class="proAttr productVendor">
-                          <label>Vendor</label>: Bingotheme
+                          <label>Vendor</label>: Boost Waist Control
                         </p>
                         <p class="proAttr productType">
-                          <label>Product type</label>: Bingo
+                          <label>Product type</label>: Kerogenic weight Loss Support
                         </p>
                         <div
                           class="proShortDescription rte"
@@ -175,18 +158,27 @@ const products = await api.getPrice();
                   </div>
                   <section class="proDetailInfo">
                     <ul class="nav nav-tabs">
-                      <li><a href="#proTabs1" data-toggle="tab">Details</a></li>
-                      <li>
-                        <a href="#proTabs2" data-toggle="tab"
-                          >Additional Information</a
-                        >
+                      <li class="nav-item">
+                        <a class="nav-link" href="#proTabs1" data-toggle="tab" >Details</a>
                       </li>
-                      <li>
-                        <a href="#proTabs3" data-toggle="tab"
+                      <li class="nav-item">
+                        <a
+                          class="nav-link"
+                          href="#proTabs2" 
+                          data-toggle="tab"
+                          
+                        >
+                          Additional Information
+                        </a>
+                      </li class="nav-item">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#proTabs3" data-toggle="tab" 
                           >Shipping & Returns</a
                         >
                       </li>
-                      <li><a href="#proTabs4" data-toggle="tab">Reviews</a></li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#proTabs4" data-toggle="tab" >Reviews</a>
+                      </li>
                     </ul>
                     <div class="tab-content">
                       <div class="tab-pane" id="proTabs1">
@@ -331,7 +323,7 @@ const products = await api.getPrice();
                         </p>
                       </div>
                       <div class="tab-pane" id="proTabs4">
-                        <div id="shopify-product-reviews" data-id="9684507336">
+                        <div id="shopify-product-reviews">
                           <h3 style="margin-left: -15px;">Reviews (2)</h3>
                           <div class="review">
                             <div class="row no-gutters">
@@ -416,37 +408,6 @@ const products = await api.getPrice();
     </div>
   </body>
 </Layout>
-<!-- <script id="bingoJsQty" is:inline>
-  <div class="bingoJsQty">
-    <button
-      type="button"
-      class="bingoQtyAdjust bingoQtyAdjustMinus"
-      data-id="{{id}}"
-      data-qty="{{itemMinus}}"
-    >
-      <span class="txtFallback">&minus;</span>
-    </button>
-    <input
-      type="text"
-      class="bingoQtyNum"
-      value="{{itemQty}}"
-      min="1"
-      data-id="{{id}}"
-      aria-label="quantity"
-      pattern="[0-9]*"
-      name="{{inputName}}"
-      id="{{inputId}}"
-    />
-    <button
-      type="button"
-      class="bingoQtyAdjust bingoQtyAdjustPlus"
-      data-id="{{id}}"
-      data-qty="{{itemAdd}}"
-    >
-      <span class="txtFallback">+</span>
-    </button>
-  </div>
-</script> -->
 
 <style>
   .bingoProducts {
@@ -541,4 +502,19 @@ const products = await api.getPrice();
 
   setProduct();
   updMiniCart();
+
+  // function openTab(evt, tabId) {
+  //   var i, tabcontent, tablinks;
+  //   tabcontent = document.getElementsByClassName("tab-pane");
+  //   for (i = 0; i < tabcontent.length; i++) {
+  //       tabcontent[i].classList.remove("active");
+  //   }
+  //   tablinks = document.getElementsByClassName("nav-link");
+  //   for (i = 0; i < tablinks.length; i++) {
+  //       tablinks[i].classList.remove("active");
+  //   }
+  //   document.getElementById(tabId).classList.add("active");
+  //   evt.currentTarget.classList.add("active");
+  // }
+  
 </script>

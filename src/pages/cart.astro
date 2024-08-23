@@ -1,0 +1,199 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Layout from "../layouts/Layout.astro";
+
+---
+<Layout title="Boost Shop Now">
+  <body id="your-shopping-cart" class="template-cart">
+    <div id="cartDrawer" class="drawer drawerRight">
+      <div class="bingoCartTitle">
+        <span>Shopping cart</span>
+        <div class="close jsDrawerClose">
+          <span>&times;</span>
+        </div>
+      </div>
+      <div id="cartContainer"></div>
+    </div>
+    <div id="pageContainer" class="isMoved">
+      <div id="shopify-section-bingo-header" class="shopify-section">
+        <Header />
+      </div>
+      <main class="mainContent">
+        <section id="pageContent">
+          <div class="container">
+            <div
+              id="shopify-section-bingo-template-cart"
+              class="shopify-section"
+            >
+              <div class="cartContainer">
+                <h1 class="cartTitle">Shopping cart</h1>
+                <div class="cartContent">
+                  <form
+                    action="/cart"
+                    method="post"
+                    novalidate
+                    class="cartForm"
+                  >
+                    <div class="cartTable">
+                      <div class="row noGutter cartHeaderLabels">
+                        <div class="text-center col-xs-12 col-sm-2">Image</div>
+                        <div class="text-center col-xs-12 col-sm-3">
+                          Product
+                        </div>
+                        <div class="text-center col-xs-12 col-sm-2">Price</div>
+                        <div class="text-center col-xs-12 col-sm-2">
+                          Quantity
+                        </div>
+                        <div class="text-right col-xs-12 col-sm-2">Total</div>
+                        <div class="text-center col-xs-12 col-sm-1">&nbsp;</div>
+                      </div>
+                      <div class="cartItemWrap"></div>
+                    </div>
+                    <div class="functionCart row noGutter">
+                      <div class="col-xs-12 col-sm-6 col-md-7">
+                        <label for="CartSpecialInstructions"
+                          >Special instructions for seller</label
+                        >
+                        <textarea
+                          name="note"
+                          class="form-control"
+                          id="CartSpecialInstructions"
+                          rows="3"></textarea>
+                      </div>
+                      <div class="text-right col-xs-12 col-sm-6 col-md-5">
+                        <p>
+                          <span class="cartSubtotalTitle">Subtotal</span>
+                          <span class="h3 cartSubtotal" id="cartSubtotal"
+                          ></span>
+                        </p>
+                        <p>
+                          <em>Shipping &amp; taxes calculated at checkout</em>
+                        </p>
+                        <button
+                          type="submit"
+                          id="submitCart"
+                          class="btn btnbingoOne"
+                          >Check Out</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+  <Footer />
+</Layout>
+<script is:inline src="/scripts/cart.js"></script>
+<script is:inline>
+  function listCart() {
+    const currentCart = getCart();
+    const tbody = document.querySelector(".cartItemWrap");
+    if (currentCart.length < 1) {
+      tbody.innerHTML = "";
+      calculateTotal();
+      return;
+    }
+    const listOfProducts = currentCart.map((product) => {
+      return `<div class="flexRow noGutter">
+                            <div class="productImage col-xs-12 col-sm-2" data-label="Product">
+                            <a href=${product.productImage} class="cartImage">
+                            <img src=${product.productImage} alt=${product.productName}>
+                            </a>
+                            </div>
+                            <div class="productInfo col-xs-12 col-sm-3">
+                            <a href="/product" class="productName" style="padding-left: 2rem;">
+                            ${product.productName}
+                            </a>
+                            </div>
+                            <div class="text-center col-xs-12 col-sm-2" data-label="Price">
+                            <span class="priceProduct">
+                            $${product.totalPrice.toFixed(2)}
+                            </span>
+                            </div>
+                            <div class="text-center col-xs-12 col-sm-2" data-label="Quantity">
+                            <input
+                              type="number"
+                              class="form-control"
+                              value="${product.qty}"
+                              data-product=""
+                              min="1"
+                              max="10"
+                              step="1"
+                              data-decimals="0"
+                              required
+                              onchange="updateQty(${product.productId}, this.value, this)"
+                            />
+                            </div>
+                            <div class="text-right col-xs-12 col-sm-2" data-label="Total">
+                            <span class="h3 cartSubtotal">
+                              ${"$" + product.total.toFixed(2)}
+                            </span>
+                            </div>
+                            <div class="text-center col-xs-12 col-sm-1">
+                            <div href="/cart/change?line=1&amp;quantity=0" class="cartRemove" onclick="removeCartItem(${product.productId})">
+                            <small>Remove</small>
+                            </div>
+                            </div>
+                        </div>`;
+    });
+    tbody.innerHTML = listOfProducts.join("");
+    updMiniCart();
+    calculateTotal();
+  }
+  listCart();
+  function removeCartItem(productId) {
+    removeItem(productId);
+    listCart();
+  }
+  function updateQty(productId, qty, target) {
+    if (qty <= "0") {
+      return target.value = "1";
+    }
+    const currentCart = getCart();
+    let updatedCart = currentCart.map((product) => {
+      if (product.productId === productId) {
+        return { ...product, qty: +qty, total: product.totalPrice * +qty };
+      }
+      return product;
+    });
+    setCart(updatedCart);
+    listCart();
+  }
+ 
+  function calculateTotal() {
+    const subTotal = getSubTotal();
+    document.getElementById("cartSubtotal").innerHTML =
+      "$" + subTotal.toFixed(2);
+    const shippingOptions = document.getElementsByName("shipping");
+    let shipping = getShippingMethod();
+    shippingOptions.forEach((s) => {
+      if (s.checked) {
+        shipping.method = s.getAttribute("data-method");
+        shipping.price = +s.getAttribute("data-price");
+      }
+    });
+    setShippingMethod(shipping);
+  }
+
+
+</script>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const submit = document.getElementById("submitCart");
+    submit.addEventListener("click", (e) => {
+      e.preventDefault();
+      const cart = sessionStorage.getItem("cart");
+      const cartSerialized = cart ? JSON.stringify(JSON.parse(cart)) : null;
+      // Armazenar o cart no cookie
+      if (cartSerialized) {
+          document.cookie = `cartCookie=${cartSerialized};path=/`;
+      }
+      window.location.href = "/checkout/";
+    });
+  });
+</script>

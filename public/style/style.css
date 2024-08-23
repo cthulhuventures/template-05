@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800');
+
 @-webkit-keyframes spin {
   0% {
     -webkit-transform: rotate(0deg);
@@ -57,7 +59,7 @@
 html {
   max-width: 1920px;
   margin: 0 auto;
-  font-family: sans-serif;
+  font-family: 'Poppins';
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -330,7 +332,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins';
   font-size: 16px;
   line-height: 1.42857;
   color: #252525;
@@ -3360,7 +3362,7 @@ tbody.collapse.in {
   margin: 0;
   padding: 11px 0;
   color: #fff;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 32px;
   font-weight: 600;
   line-height: 30px;
@@ -4626,7 +4628,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   letter-spacing: normal;
@@ -4744,7 +4746,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: Source Sans Pro, Helvetica, Arial, sans-serif;
+  font-family: 'Poppins';
   font-style: normal;
   font-weight: 400;
   letter-spacing: normal;
@@ -4977,7 +4979,7 @@ button.close {
   width: 20px;
   height: 20px;
   line-height: 1;
-  font-family: serif;
+  font-family: 'Poppins';
 }
 .carousel-control .icon-prev:before {
   content: "\2039";
@@ -9196,7 +9198,7 @@ button.close {
 .bingossCaptionContent h2 {
   margin: 0 -4px 7px;
   padding: 6px 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 52px;
   font-weight: 600;
   text-transform: uppercase;
@@ -9208,7 +9210,7 @@ button.close {
 }
 .bingossCaptionContent p {
   margin: 0 0 15px;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 16px;
   font-weight: 400;
 }
@@ -9219,7 +9221,7 @@ button.close {
   color: #252525;
   background-color: transparent;
   border: 2px solid #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -9383,7 +9385,7 @@ button.close {
   padding: 16px 22px 14px;
   color: #252525;
   background-color: transparent;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 500;
   line-height: 28px;
@@ -9435,7 +9437,7 @@ button.close {
   display: block;
   color: #707070;
   border-bottom: 0;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 12px;
@@ -9447,7 +9449,7 @@ button.close {
   padding: 12px 0;
   color: #707070;
   background-color: transparent;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
 }
@@ -9468,7 +9470,7 @@ button.close {
   color: #707070;
   background-color: transparent;
   border-bottom: 1px solid #ededed;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 400;
   line-height: 24px;
@@ -9609,7 +9611,7 @@ button.close {
   margin: 0;
   padding: 10px 0;
   border-bottom: 1px solid #e1e1e1;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-weight: 600;
   font-size: 18px;
   text-transform: uppercase;
@@ -9635,7 +9637,7 @@ button.close {
 .menuMobileContainer .memoNav li a {
   display: block;
   padding: 12px 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   color: #252525;
   border-bottom: 1px dashed #e1e1e1;
@@ -9691,7 +9693,7 @@ button.close {
   color: #252525;
   background-color: transparent;
   border: 1px solid #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 12px;
   font-weight: 600;
   line-height: 20px;
@@ -9700,7 +9702,7 @@ button.close {
 }
 .priceProduct {
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 600;
 }
@@ -9716,7 +9718,7 @@ button.close {
   vertical-align: middle;
   margin: 0 10px 0 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 32px;
   font-weight: 600;
 }
@@ -9725,7 +9727,7 @@ button.close {
   vertical-align: middle;
   margin: 0;
   color: #707070;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 400;
 }
@@ -9734,7 +9736,7 @@ button.close {
   color: #252525;
   background-color: #fff;
   border: 2px solid #ebebeb;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
@@ -9913,6 +9915,18 @@ button.close {
   overflow: hidden;
   text-align: center;
 }
+
+.proHImage img {
+  transition: transform 0.5s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.proHImage:hover img {
+  transform: scale(1.2);
+}
+
 .bingoProBlock .proFeaturedImage {
   display: flex;
   justify-content: center;
@@ -10127,7 +10141,7 @@ button.close {
   color: #252525;
   background-color: transparent;
   border: 0 !important;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -10281,7 +10295,7 @@ button.close {
   color: #252525;
   background-color: #fff;
   border: 2px solid #ebebeb;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
@@ -10377,7 +10391,7 @@ button.close {
   margin: 0 0 22px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
@@ -10431,7 +10445,7 @@ button.close {
   padding: 15px 0;
   display: block;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -10462,7 +10476,7 @@ button.close {
   margin: 0;
   padding: 6px 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
@@ -10480,7 +10494,7 @@ button.close {
   margin-right: 5px;
   padding: 10px 0;
   height: 40px;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -10493,7 +10507,7 @@ button.close {
 .proBoxInfo .btnAddToCart {
   padding: 10px 35px;
   height: 48px;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -10564,7 +10578,7 @@ button.close {
   width: 70px;
   height: 48px;
   border: 1px solid #e1e1e1;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 26px;
@@ -10593,7 +10607,9 @@ button.close {
   vertical-align: middle;
 }
 .proDetailInfo ul.nav-tabs > li:after {
-  content: "";
+  content: "\f0d7";
+  font-family: 'FontAwesome';
+  color: purple;
   position: absolute;
   bottom: -7px;
   left: 50%;
@@ -10607,7 +10623,7 @@ button.close {
   color: #707070;
   background-color: transparent;
   border: 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -10635,7 +10651,7 @@ button.close {
 .proDetailInfo .tab-content > .tab-pane {
   padding: 30px 40px;
   color: #707070;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
   line-height: 24px;
 }
@@ -10709,7 +10725,7 @@ button.close {
 }
 .proDetailInfo .spr-container .spr-header-title {
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -10717,7 +10733,7 @@ button.close {
 .proDetailInfo .spr-container .spr-review-header-title,
 .proDetailInfo .spr-container .spr-form-label {
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -10770,7 +10786,7 @@ button.close {
   padding: 0;
 }
 .proDetailInfo .panel-title {
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -10797,7 +10813,7 @@ button.close {
 .proDetailInfo .panel-body {
   padding: 30px;
   color: #707070;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
   line-height: 24px;
 }
@@ -10845,7 +10861,7 @@ button.close {
   float: left;
   width: 100%;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -10989,7 +11005,7 @@ button.close {
   margin-bottom: 0;
 }
 .swatch.error code {
-  font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+  font-family: 'Poppins';
 }
 .templageBlogWrap,
 .templageArticleWrap {
@@ -11053,7 +11069,7 @@ button.close {
   color: #252525;
   background-color: transparent;
   border: 2px solid #e1e1e1;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -11090,7 +11106,7 @@ button.close {
   margin: 0 -2px 13px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 32px;
   font-weight: 600;
   line-height: 38px;
@@ -11110,7 +11126,7 @@ button.close {
   color: #252525;
   background-color: transparent;
   border: 2px solid #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -11206,7 +11222,7 @@ button.close {
   width: 97px;
   padding: 0 20px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 600;
   line-height: 28px;
@@ -11287,7 +11303,7 @@ button.close {
   margin-bottom: 23px;
 }
 .bingoBlogTitle {
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 26px;
   font-weight: 700;
   border-bottom: 1px solid #e1e1e1;
@@ -11303,7 +11319,7 @@ button.close {
   margin: 0 0 37px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase;
@@ -11312,7 +11328,7 @@ button.close {
   margin: 0 0 30px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -11354,7 +11370,7 @@ button.close {
   color: #fff;
   background-color: #252525;
   border: 1px solid #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -11460,7 +11476,7 @@ button.close {
   position: relative;
   display: block;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-decoration: none;
@@ -11476,7 +11492,7 @@ button.close {
   position: relative;
   margin: 0 0 29px;
   padding: 15px 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 26px;
   font-weight: 600;
 }
@@ -11543,7 +11559,7 @@ button.close {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 13px;
   font-weight: 600;
   line-height: 30px;
@@ -11640,7 +11656,7 @@ button.close {
 .cartSubtotalTitle {
   display: block;
   color: #4a4a4a;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 600;
 }
@@ -11693,7 +11709,7 @@ button.close {
   margin: 0 0 30px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 28px;
   font-weight: 600;
 }
@@ -11744,7 +11760,7 @@ button.close {
 }
 .cartModalEmpty .cartEmpty {
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
 }
@@ -11803,7 +11819,7 @@ button.close {
   padding: 10px 0;
   color: #252525;
   border-bottom: 1px solid #ebebeb;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
@@ -11814,7 +11830,7 @@ button.close {
   padding: 10px 0;
   color: #252525;
   border-bottom: 1px solid #ebebeb;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 20px;
   font-weight: 600;
   text-transform: uppercase;
@@ -11836,7 +11852,7 @@ button.close {
   margin: 0 0 12px;
   padding: 10px 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 600;
 }
@@ -11855,7 +11871,7 @@ button.close {
 .formAccount label {
   display: block;
   color: #252525;
-  font-weight: Montserrat;
+  font-weight: 'Poppins';
   font-size: 14px;
   font-weight: 600;
 }
@@ -11946,7 +11962,7 @@ button.close {
 .addressBoxContent .adressName {
   margin: 0;
   padding: 10px 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 16px;
   font-weight: 600;
 }
@@ -12288,7 +12304,7 @@ button.close {
   margin: 0;
   padding: 12px 0 5px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-align: center;
@@ -12371,7 +12387,7 @@ button.close {
   margin: 0;
   padding: 25px 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -12417,7 +12433,7 @@ button.close {
   width: 100%;
   height: 56px;
   padding: 15px 20px;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -12440,7 +12456,7 @@ button.close {
   margin: 0 0 20px;
   padding: 10px 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 72px;
   font-weight: 600;
   text-transform: uppercase;
@@ -12454,7 +12470,7 @@ button.close {
   margin: 0 0 20px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
@@ -12465,7 +12481,7 @@ button.close {
   color: #252525;
   background-color: #fff;
   border: 2px solid #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
@@ -12516,7 +12532,7 @@ button.close {
 .wishlisthContainer .wishlistEmpty .alertNoWishlist {
   margin-bottom: 34px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 28px;
   font-weight: 700;
 }
@@ -12756,7 +12772,7 @@ button.close {
 #bingoQuickView .quickviewName {
   margin: 0 0 22px;
   padding: 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
@@ -12802,7 +12818,7 @@ button.close {
 .listCollection .headerCollection {
   position: relative;
   padding: 9px 26px;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 26px;
   font-weight: 600;
   text-transform: uppercase;
@@ -12877,7 +12893,7 @@ button.close {
   margin: 0 0 30px;
   padding: 30px 0;
   color: #373737;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
@@ -12885,7 +12901,7 @@ button.close {
 .pageAboutUs h3 {
   margin: 0 0 25px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 600;
 }
@@ -13202,7 +13218,7 @@ button:active:focus,
   -webkit-transition: all 0.35s ease;
   -o-transition: all 0.35s ease;
   transition: all 0.35s ease;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -13232,7 +13248,7 @@ button:active:focus,
   color: #252525;
   background-color: #fff;
   border-color: #fff;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -13729,7 +13745,7 @@ button:active:focus,
   margin: 0 0 30px;
   padding: 10px 0 10px 20px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
@@ -13750,7 +13766,7 @@ button:active:focus,
   margin: 0 0 13px;
   padding: 10px 0 10px 20px;
   color: #772A83;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 500;
   text-transform: uppercase;
@@ -13771,7 +13787,7 @@ button:active:focus,
   margin: 0;
   padding: 10px 0 10px 18px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 18px;
   font-weight: 600;
   line-height: 26px;
@@ -13791,13 +13807,13 @@ button:active:focus,
   margin: 0 0 18px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
 }
 .bingoPageTitle {
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 20px;
   font-weight: 600;
   margin: 0;
@@ -13895,7 +13911,7 @@ button:active:focus,
   padding: 0;
   display: block;
   color: #231f20;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 500;
   text-decoration: none;
@@ -14275,7 +14291,7 @@ button:active:focus,
   position: relative;
   margin: 0;
   padding: 18px 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -14289,7 +14305,7 @@ button:active:focus,
   height: 40px;
   color: #fff;
   background-color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -14485,7 +14501,7 @@ button:active:focus,
   position: relative;
   margin: 20px 0 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
 }
@@ -14601,7 +14617,7 @@ button:active:focus,
 }
 .ajaxCartModal .ajaxNote label {
   margin: 0 0 10px;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: none;
@@ -14683,7 +14699,7 @@ button:active:focus,
   width: 70px;
   height: 32px;
   border: 1px solid #e1e1e1;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 13px;
   font-weight: 600;
   line-height: 22px;
@@ -14700,7 +14716,7 @@ button:active:focus,
   display: block;
   margin: 0;
   color: #252525;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
   text-transform: uppercase;
   text-decoration: none;
@@ -14781,7 +14797,7 @@ button:active:focus,
   display: block;
   padding: 5px 0;
   color: #4a4a4a;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 30px;
@@ -14799,7 +14815,7 @@ button:active:focus,
 }
 .ajaxSubTotal span:first-child {
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 19px;
   font-weight: 600;
 }
@@ -14999,7 +15015,7 @@ button:active:focus,
   margin: 0 0 24px;
   padding: 20px 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 48px;
   font-weight: 600;
   text-transform: uppercase;
@@ -15038,7 +15054,7 @@ button:active:focus,
   height: 58px;
   color: #fff;
   background-color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 20px;
   font-weight: 600;
   line-height: 28px;
@@ -15072,7 +15088,7 @@ button:active:focus,
   margin: 0 0 10px;
   padding: 0;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 36px;
   font-weight: 600;
   text-transform: uppercase;
@@ -15097,7 +15113,7 @@ button:active:focus,
   height: 58px;
   color: #fff;
   background-color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 20px;
   font-weight: 600;
   line-height: 28px;
@@ -15349,7 +15365,7 @@ button:active:focus,
   padding: 5px 10px;
   color: #fff;
   background-color: #252525b3;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 20px;
@@ -15411,7 +15427,7 @@ button:active:focus,
   margin: 0;
   padding: 0;
   color: #fff;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 26px;
   font-weight: 600;
   text-transform: uppercase;
@@ -15438,7 +15454,7 @@ button:active:focus,
   height: 60px;
   color: #252525;
   background-color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 20px;
   font-weight: 600;
   line-height: 30px;
@@ -15473,7 +15489,7 @@ button:active:focus,
   min-height: 60px;
   color: #0c0c0c;
   background-color: #252525bf;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-weight: 600;
   line-height: 18px;
   text-align: center;
@@ -15554,7 +15570,7 @@ button:active:focus,
 }
 .bingoMaxCation .desc {
   margin: 0 0 14px;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
 }
 .bingoMaxCation .btn {
@@ -15564,7 +15580,7 @@ button:active:focus,
   color: #252525;
   background-color: transparent;
   border: 1px solid #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 12px;
   font-weight: 600;
   line-height: 22px;
@@ -15690,7 +15706,7 @@ button:active:focus,
   margin: 0 0 38px;
   padding: 9px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-align: center;
@@ -15738,7 +15754,7 @@ button:active:focus,
   color: #252525;
   background-color: transparent;
   border: 0;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   line-height: 20px;
@@ -15831,7 +15847,7 @@ button:active:focus,
   margin: 0;
   padding: 10px 0;
   color: #fff;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 52px;
   font-weight: 600;
 }
@@ -15839,7 +15855,7 @@ button:active:focus,
   margin: 0 0 28px;
   padding: 8px 0;
   color: #fff;
-  font-family: Source Sans Pro;
+  font-family: 'Poppins';
   font-size: 14px;
   line-height: 28px;
 }
@@ -15851,7 +15867,7 @@ button:active:focus,
   color: #fff;
   background-color: transparent;
   border: 2px solid white;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 22px;
@@ -15975,7 +15991,7 @@ button:active:focus,
   color: #8a8a8a;
   background-color: transparent;
   border: 2px solid #8a8a8a;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
@@ -16153,7 +16169,7 @@ button:active:focus,
   margin: 0 0 14px;
   padding: 10px 0 10px 20px;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 24px;
   font-weight: 600;
   text-transform: uppercase;
@@ -16206,6 +16222,7 @@ button:active:focus,
 }
 .more-green {
   border-right: 1px solid #e1e1e1 !important;
+  cursor: pointer;
 }
 .maxHTMLContent .maxCaption .more:hover {
   color: #fff;
@@ -16223,7 +16240,7 @@ button:active:focus,
   padding: 0 10px;
   display: block;
   color: #252525;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
@@ -16254,7 +16271,7 @@ button:active:focus,
   margin: 0 0 16px;
   padding: 0;
   color: #fff;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 32px;
   font-weight: 600;
   text-transform: uppercase;
@@ -16278,7 +16295,7 @@ button:active:focus,
   color: #fff;
   background-color: transparent;
   border: 2px solid white;
-  font-family: Montserrat;
+  font-family: 'Poppins';
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;

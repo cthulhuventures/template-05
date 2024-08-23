@@ -34,30 +34,12 @@ const products = await api.getPrice();
               <div class="carousel-item active">
                 <img src="/imgs/control.png" alt="Slide 1">
                 <div class="carousel-caption">
-                  <!-- <h2>WE PRIORITIZE YOUR WELL-BEING</h2>
-                  <p>NATURAL & SAFE INGREDIENTS!</p> -->
                   <a href="/shop" class="btn">Explore now</a>
                 </div>
               </div>
-              <!-- <div class="carousel-item">
-                <img src="/imgs/slider-2.png" alt="Slide 2">
-                <div class="carousel-caption">
-                  <h2>EMBARK ON YOUR KETOGENIC JOURNEY</h2>
-                  <p>TRUSTED & RECOMMENDED!</p>
-                  <a href="/shop" class="btn">Explore now</a>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="/imgs/slide-2.png" alt="Slide 3">
-                <div class="carousel-caption">
-                  <h2>INTRODUCING OUR REVOLUTIONARY KETOGENIC</h2>
-                  <p>WEIGHT LOSS & ENERGY BOOST</p>
-                  <a href="/shop" class="btn">Explore now</a>
-                </div>
-              </div> -->
+              
             </div>
-            <!-- <a class="carousel-control prev" onclick="prevSlide()">&#10094;</a>
-            <a class="carousel-control next" onclick="nextSlide()">&#10095;</a> -->
+            
           </div>
   
           <div
@@ -122,6 +104,48 @@ const products = await api.getPrice();
               </div>
             </div>
           </div>
+
+          <div class="third-section">
+            <span>MORE ENERGY</span>
+            <div><a style="color: #fff;text-decoration: none" href="/shop">DISCOVERY</a></div>
+          </div>
+
+          <div
+            class="shopify-section"
+          >
+            <div class="maxFullHTML">
+              <div class="maxHTMLContent">
+                <div class="maxCaption">
+                  <div class="content">
+                    <h3 class="title">GREEN COFFEE</h3>
+                    <div class="desc">
+                      Revitalize your routine with our Green Coffee Supplement – natural energy, weight support, and antioxidant boost in one!
+                    </div>
+                  </div>
+                  <div class="more-green more">
+                    <a
+                      class="htmlMore"
+                      href="/shop">M<br />o<br />r<br />e</a
+                    >
+                  </div>
+                </div>
+                <div class="maxBanner">
+                  <div class="bingoBanner">
+                    <div class="effectThree">
+                      <a href="/shop" title="Shop All">
+                        <img
+                          class="img-responsive"
+                          alt="banner"
+                          src="/imgs/product4.png"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
         </main>
         <Footer/>
       </div>
@@ -130,6 +154,43 @@ const products = await api.getPrice();
 </Layout>
 
 <style>
+  .third-section {
+    width: 1903px;
+    background-color: #304026;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .third-section span {
+    font-size: 9rem;
+    margin-bottom: 2.2rem;
+    color:#fff;
+    line-height: 1.1;
+    letter-spacing: .2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-family: "Poppins";
+  }
+
+  .third-section div {
+    min-width: 200px;
+    font-size: 1.5rem;
+    padding-top: 1.4rem;
+    padding-bottom: 1.4rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    font-family: "Poppins";
+    border: 2px solid #fff;
+    text-align: center;
+  }
+
+  .third-section div:hover {
+    background-color: #848E7E;
+  }
+
   h2 {
     font-size: 4.5rem;
   }
@@ -197,6 +258,12 @@ const products = await api.getPrice();
 
   .next {
     left: 87%;
+  }
+
+  @media screen and (max-width: 1200px) {
+    .third-section {
+      width: 1349px;
+    }
   }
 
   @media screen and (max-width: 768px) {

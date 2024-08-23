@@ -1,0 +1,102 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Products from "../components/Products.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+
+import { Api } from "../backend/api";
+const api = new Api();
+
+const products = await api.getPrice();
+
+---
+
+<Layout title="Shop">
+  <body id="swimwear" class="template-collection">
+    <div id="cartDrawer" class="drawer drawerRight">
+      <div class="bingoCartTitle">
+        <span>Shopping cart</span>
+        <div class="close jsDrawerClose">
+          <span>&times;</span>
+        </div>
+      </div>
+      <div id="cartContainer"></div>
+    </div>
+    <div id="pageContainer" class="isMoved">
+      <div id="shopify-section-bingo-header" class="shopify-section">
+        <Header />
+      </div>
+      <main class="mainContent">
+        <section id="bingoBreadcrumbs">
+          <div
+            id="shopify-section-bingo-breacrumb-image"
+            class="shopify-section"
+          >
+            <div class="bingoBreadcrumbImage">
+              <img
+                class="img-responsive"
+                alt="Banner image"
+                src="/imgs/shopNow.png"
+              />
+            </div>
+            <div class="container">
+              <nav class="bingoBreadcrumbWrap">
+                <div class="breadcrumbTitle">
+                  <h3>shop now</h3>
+                </div>
+                <ol
+                  class="breadcrumb"
+                  itemscope
+                  itemtype="http://schema.org/BreadcrumbList"
+                >
+                  <li
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"
+                  >
+                    <a href="/" title="Back to the frontpage" itemprop="item">
+                      <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                  </li>
+                  <li
+                    class="active"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"
+                  >
+                    <span itemprop="item"
+                      ><span itemprop="name">Shop now</span></span
+                    >
+                    <meta itemprop="position" content="2" />
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </section>
+        <section id="pageContent">
+          <Products product={products} />
+        </section>
+      </main>
+      <Footer />
+    </div>
+  </body>
+</Layout>
+
+<style>
+  #pageContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4rem 0;
+  }
+
+  .collectionContainer {
+    display: flex;
+  }
+
+  .container {
+    justify-content: flex-start;
+  }
+</style>
