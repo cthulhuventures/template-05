@@ -1,0 +1,248 @@
+---
+const { product } = Astro.props;
+---
+
+<div class="container-products">
+  <div class="item">
+    <div class="bingoProBlock">
+      <div class="proHImage">
+        <a
+          class="proFeaturedImage"
+          id="lnk-img-0"
+          data-product={JSON.stringify(product.message['1'])}
+          onclick="showProduct('lnk-img-0')"
+        >
+          <img
+            class="img-responsive"
+            alt="first product"
+            src={product.message['1'].productImage}
+          />
+        </a>
+      </div>
+      <div class="product-content">
+        <h5 class="proName">
+          <a
+          class="proFeaturedImage"
+          id="lnk-img-0"
+          data-product={JSON.stringify(product.message['1'])}
+          onclick="showProduct('lnk-img-0')"
+        >{product.message['1'].productName}</a>
+        </h5>
+        <div class="proPrice">
+          <div class="priceProduct priceSale">${product.message['1'].totalPrice}</div>
+        </div>
+        <div class="proButton">
+          <div
+            id="product0"
+            class="btnAddToCart"
+            data-product={JSON.stringify(product.message['1'])}
+            onclick="addProductToCart(0);"
+          >
+            add to cart
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="bingoProBlock">
+      <div class="proHImage">
+        <a
+          class="proFeaturedImage"
+          id="lnk-img-1"
+          data-product={JSON.stringify(product.message['2'])}
+          onclick="showProduct('lnk-img-1')"
+        >
+          <img
+            class="img-responsive"
+            alt="Second product"
+            src={product.message['2'].productImage}
+          />
+        </a>
+      </div>
+      <div class="product-content">
+        <h5 class="proName">
+          <a
+          class="proFeaturedImage"
+          id="lnk-img-1"
+          data-product={JSON.stringify(product.message['2'])}
+          onclick="showProduct('lnk-img-1')"
+        >{product.message['2'].productName}</a>
+        </h5>
+        <div class="proPrice">
+          <div class="priceProduct priceSale">${product.message['2'].totalPrice}</div>
+        </div>
+        <div class="proButton">
+          <div
+            id="product1"
+            class="btnAddToCart"
+            data-product={JSON.stringify(product.message['2'])}
+            onclick="addProductToCart(1);"
+          >
+            add to cart
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="bingoProBlock">
+      <div class="proHImage">
+        <a
+          class="proFeaturedImage"
+          id="lnk-img-2"
+          data-product={JSON.stringify(product.message['3'])}
+          onclick="showProduct('lnk-img-2')"
+        >
+          <img
+            class="img-responsive"
+            alt="Third product"
+            src={product.message['3'].productImage}
+          />
+        </a>
+      </div>
+      <div class="product-content">
+        <h5 class="proName">
+          <a
+            class="proFeaturedImage"
+            id="lnk-img-2"
+            data-product={JSON.stringify(product.message['3'])}
+            onclick="showProduct('lnk-img-2')">{product.message['3'].productName}</a
+          >
+        </h5>
+        <div class="proPrice">
+          <div class="priceProduct priceSale">${product.message['3'].totalPrice}</div>
+        </div>
+        <div class="proButton">
+          <div
+            id="product2"
+            class="btnAddToCart"
+            data-product={JSON.stringify(product.message['3'])}
+            onclick="addProductToCart(2);"
+          >
+            add to cart
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="item">
+    <div class="bingoProBlock">
+      <div class="proHImage">
+        <a
+          class="proFeaturedImage"
+          id="lnk-img-3"
+          data-product={JSON.stringify(product.message['4'])}
+          onclick="showProduct('lnk-img-3')"
+        >
+          <img
+            class="img-responsive"
+            alt="Four product"
+            src={product.message['4'].productImage}
+          />
+        </a>
+      </div>
+      <div class="product-content">
+        <h5 class="proName">
+          <a
+            class="proFeaturedImage"
+            id="lnk-img-3"
+            data-product={JSON.stringify(product.message['4'])}
+            onclick="showProduct('lnk-img-3')">{product.message['4'].productName}</a
+          >
+        </h5>
+        <div class="proPrice">
+          <div class="priceProduct priceSale">${product.message['4'].totalPrice}</div>
+        </div>
+        <div class="proButton">
+          <div
+            id="product3"
+            class="btnAddToCart"
+            data-product={JSON.stringify(product.message['4'])}
+            onclick="addProductToCart(3);"
+          >
+            add to cart
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:inline>
+  .item {
+    width: 100%;
+  }
+
+  .img-thumbnail {
+    width: 62.5%;
+  }
+  .bingoProBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .product-content:first-child {
+    align-self: flex-end;
+  }
+
+  .product-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    margin-top: 2rem;
+  }
+
+  .product-content .proButton {
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .container-products {
+    display: flex;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 1366px) {
+    .img-thumbnail {
+      width: 51.5%;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .container-products {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script is:inline src="/script/cart.js"></script>
+<script is:inline>
+  function addProductToCart(id) {
+    const obj = document.getElementById("product" + id);
+    const dataProduct = JSON.parse(obj.getAttribute("data-product"));
+    cartItem = getItem(dataProduct);
+    addItem(cartItem);
+    const newUrl =
+      window.location.protocol + "//" + window.location.host + "/cart";
+    window.location.href = newUrl;
+  }
+
+  updMiniCart();
+
+  function showProduct(id) {
+    const obj = document.getElementById(id);
+    const dataProduct = JSON.parse(obj.getAttribute("data-product"));
+    const product = getItem(dataProduct);
+    setSelectedProduct(product);
+    const newUrl =
+      window.location.protocol + "//" + window.location.host + "/product";
+    window.location.href = newUrl;
+  }
+</script>

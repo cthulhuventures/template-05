@@ -1,0 +1,180 @@
+---
+
+---
+
+<header id="bingoHeader" class="bingoHeader">
+  <section class="headerWrap">
+    <div id="bingoHeaderMain">
+      <div class="headerContent">
+        <div class="headerContentWrapper">
+          <div class="bingoHeaderLeft">
+            <h1
+              class="bingoLogo"
+              itemscope
+              itemtype="http://schema.org/Organization"
+            >
+              <a href="/" itemprop="url" class="bingoLogoLink"
+                ><img
+                  class="img-responsive"
+                  src='/imgs/logo_1.png'
+                  alt="Bingo Max"
+                  itemprop="logo"
+                />
+              </a>
+            </h1>
+          </div>
+          <div class="bingoHeaderCenter">
+            <div id="bingoMegamenu" class="bingoMegamenu">
+              <nav class="bingoNavMenu">
+                <ul class="nav hidden-xs hidden-sm">
+                  <li class="active">
+                    <a href="/" title="">Home</a>
+                  </li>
+
+                  <li class="">
+                    <a href="/shop" title="">Shop</a>
+                  </li>
+                  <li class="">
+                    <a href="/contact-us" title="">Contact-Us</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="bingoHeaderMenu">
+              <div id="mySidenav" class="sidenav">
+                <a class="closebtn" onclick="closeNav()">&times;</a>
+                <ul class="vertical-group">
+                  <li
+                    class="vertical-item level1 toggle-menu vertical_drop mega_parent"
+                  >
+                  </li>
+                  <li class="vertical-item level1 toggle-menu">
+                    <a class="menu-link" href="/">
+                      <span class="icon_items"><i class="fa fa-home"></i></span>
+                      <span class="menu-title">Home</span>
+                    </a>
+                  </li>
+                  <li class="vertical-item level1 toggle-menu">
+                    <a class="menu-link" href="/shop">
+                      <span class="icon_items"
+                        ><i class="fa fa-shopping-bag"></i></span
+                      >
+                      <span class="menu-title">Shop All</span>
+                    </a>
+                  </li>
+                  <li class="vertical-item level1 toggle-menu">
+                    <a class="menu-link" href="/contact-us">
+                      <span class="icon_items"><i class="fa fa-phone"></i></span
+                      >
+                      <span class="menu-title">Contact Us</span>
+                    </a>
+                  </li>
+                  <!-- <li class="vertical-item level1 toggle-menu">
+                    <a class="menu-link" href="/about-us">
+                      <span class="icon_items"
+                        ><i class="fa fa-desktop"></i></span
+                      >
+                      <span class="menu-title">About-us</span>
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+              <span class="openbtn" onclick="openNav()">&#9776;</span>
+            </div>
+            <div class="menuMobileOverlay hidden-md hidden-lg"></div>
+          </div>
+          <div class="bingoHeaderRight pt-12">
+            <div class="bingoCartTop">
+              <a href="/cart">
+                <i class="iconCart"></i>
+                <span class="title">Cart</span>
+                <span id="CartCount">0</span>
+                <span>items</span>
+                <span id="CartCost">$0.00</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</header>
+
+<style is:inline>
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 3;
+  }
+
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #7C2D86;
+    display: block;
+    transition: 0.3s;
+  }
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  .sidenav .closebtn {
+    position: absolute;
+    top: 29px;
+    right: 10px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: black !important;
+  }
+  .openbtn {
+    font-size: 29px;
+    cursor: pointer;
+    background-color: #11111100;
+    color: rgb(32, 32, 32);
+    padding: 10px 15px;
+    border: none;
+    display: none;
+  }
+  .openbtn:hover {
+    background-color: #44444400;
+  }
+
+  .hasMenuDropdown a::after {
+    content: "";
+  }
+
+  @media screen and (max-width: 768px) {
+    .openbtn {
+      display: block;
+    }
+  }
+</style>
+
+<script is:inline>
+  const cartCountEl = document.getElementById("CartCount");
+  const dataCart = JSON.parse(sessionStorage.getItem("cart"));
+
+  if (dataCart) {
+    cartCountEl.innerHTML = dataCart.length;
+  }
+
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+</script>

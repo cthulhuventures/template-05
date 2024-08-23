@@ -1,0 +1,544 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Products from "../components/Products.astro";
+
+import { Api } from "../backend/api";
+const api = new Api();
+
+const products = await api.getPrice();
+
+---
+
+<Layout title="Booster Shop Now">
+  <body id="curabitur-semper-odio" class="template-product">
+    <div id="cartDrawer" class="drawer drawerRight">
+      <div class="bingoCartTitle">
+        <span>Shopping cart</span>
+        <div class="close">
+          <span>&times;</span>
+        </div>
+      </div>
+      <div id="cartContainer"></div>
+    </div>
+    <div id="pageContainer" class="isMoved">
+      <div class="shopify-section">
+        <Header />
+      </div>
+      <main class="mainContent">
+        <section id="bingoBreadcrumbs">
+          <div
+            id="shopify-section-bingo-breacrumb-image"
+            class="shopify-section"
+          >
+            <div class="bingoBreadcrumbImage-products">
+              <img
+                class="img-responsive"
+                id=""
+                alt="Bingo Max"
+                src="/imgs/products.png"
+              />
+            </div>
+            <div class="container">
+              <nav class="bingoBreadcrumbWrap">
+                <ol
+                  class="breadcrumb"
+                  itemscope
+                  itemtype="http://schema.org/BreadcrumbList"
+                >
+                  <li
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"
+                  >
+                    <a href="/" title="Back to the frontpage" itemprop="item">
+                      <span itemprop="name">Home</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                  </li>
+                  <li
+                    class="active"
+                    itemprop="itemListElement"
+                    itemscope
+                    itemtype="http://schema.org/ListItem"
+                  >
+                    <span itemprop="item"
+                      ><span itemprop="name" class="product-name"></span></span
+                    >
+                    <meta itemprop="position" content="2" />
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </section>
+        <section id="pageContent">
+          <div class="container">
+            <div
+              id="shopify-section-bingo-template-product"
+              class="shopify-section"
+            >
+              <div
+                class="productBox"
+                itemscope
+                itemtype="http://schema.org/Product"
+              >
+                <!-- <meta
+                  itemprop="url"
+                  content="https://bingo-max.myshopify.com/products/curabitur-semper-odio"
+                />
+                <meta
+                  itemprop="image"
+                  content="//bingo-max.myshopify.com/cdn/shop/products/3_1_grande.jpg?v=1498019620"
+                /> -->
+                <div class="proBoxPrimary">
+                  <div class="row">
+                    <div class="proBoxImage col-xs-12 col-sm-12 col-md-5">
+                      <div class="proFeaturedImage">
+                        <img
+                          id="ProductPhotoImg"
+                          data-zoom-enable="true"
+                          class="img-responsive"
+                          alt="Curabitur semper odio"
+                        />
+                      </div>
+                    </div>
+                    <div class="proBoxInfo col-xs-12 col-sm-12 col-md-7">
+                      <h1 itemprop="name" id="product-name"></h1>
+                      <div class="proReviews">
+                        <span
+                          class="shopify-product-reviews-badge"
+                          data-id="9684507336"></span>
+                      </div>
+                      <div
+                        itemprop="offers"
+                        itemscope
+                        itemtype="http://schema.org/Offer"
+                      >
+                        <meta itemprop="priceCurrency" content="USD" />
+                        <link
+                          itemprop="availability"
+                          href="http://schema.org/InStock"
+                        />
+                        <div class="ratings-container">
+                          <div class="ratings">
+                            <div class="ratings-val" style="width: 80%"></div>
+                          </div>
+                          <a class="ratings-text" href="#product-review-link" id="review-link"
+                            >( 2 Reviews )</a
+                          >
+                        </div>
+                        <div class="proPrice clearfix">
+                          <span id="productPrice" class="priceProduct"></span>
+                          <span
+                            id="retailPrice"
+                            class="priceProduct priceCompare"
+                          >
+                          </span>
+                        </div>
+                        <p class="proAttr productAvailability instock">
+                          <label>Availability</label>: In stock
+                        </p>
+                        <p class="proAttr productVendor">
+                          <label>Vendor</label>: Bingotheme
+                        </p>
+                        <p class="proAttr productType">
+                          <label>Product type</label>: Bingo
+                        </p>
+                        <div
+                          class="proShortDescription rte"
+                          itemprop="description"
+                          id="product-description"
+                        >
+                        </div>
+                        <form
+                          action="/cart"
+                          method="post"
+                          enctype="multipart/form-data"
+                          class="formAddToCart"
+                        >
+                          <div class="proButton">
+                            <button
+                              type="submit"
+                              name="add"
+                              id="AddToCart"
+                              onclick="addProductToCart(0);"
+                              class="btn btnAddToCart"
+                            >
+                              <span id="AddToCartText">Add to Cart</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <section class="proDetailInfo">
+                    <ul class="nav nav-tabs">
+                      <li><a href="#proTabs1" data-toggle="tab">Details</a></li>
+                      <li>
+                        <a href="#proTabs2" data-toggle="tab"
+                          >Additional Information</a
+                        >
+                      </li>
+                      <li>
+                        <a href="#proTabs3" data-toggle="tab"
+                          >Shipping & Returns</a
+                        >
+                      </li>
+                      <li><a href="#proTabs4" data-toggle="tab">Reviews</a></li>
+                    </ul>
+                    <div class="tab-content">
+                      <div class="tab-pane" id="proTabs1">
+                        <h3>Introducing our revolutionary Ketogenic Weight Loss Support Supplement</h3>
+                        <p>
+                          The key to unlocking your body's full fat-burning potential and achieving your
+                          weight loss goals with ease! Crafted with precision and backed by science, our
+                          product is designed to support and enhance your ketogenic journey, making it simpler
+                          and more effective than ever.
+                        </p>
+
+                        <h3 style="margin-top: 2rem;">Advanced Ketogenic Formula</h3>
+                        <p>
+                          Our supplement is powered by a cutting-edge blend of premium ingredients, including
+                          exogenous ketones, MCT oil, and essential vitamins and minerals. This unique formula
+                          is crafted to kickstart and maintain ketosis, the metabolic state where your body
+                          burns fat for fuel, helping you shed unwanted pounds and inches.
+                        </p>
+
+                        <h3 style="margin-top: 2rem;">Natural and Safe Ingredients</h3>
+                        <p>
+                          We prioritize your well-being, and that's why our Ketogenic Weight Loss Support
+                          Supplement is made with natural, non-GMO ingredients. It's free from artificial
+                          additives, preservatives, and unnecessary fillers, ensuring that you receive only
+                          the purest and safest support for your ketogenic lifestyle.
+                        </p>
+
+                        <h3 style="margin-top: 2rem;">Energy Boost and Mental Clarity</h3>
+                        <p>
+                          Experience a surge in energy levels as your body efficiently utilizes fat for fuel.
+                          Say goodbye to energy crashes and brain fog that often accompany traditional diets.
+                          Our supplement promotes mental clarity, focus, and sustained energy throughout the
+                          day, helping you stay sharp and alert.
+                        </p>
+
+                        <h3 style="margin-top: 2rem;">Enhanced Fat Burning</h3>
+                        <p>
+                          Maximize your fat-burning potential with our carefully curated blend. Whether you're
+                          just starting your ketogenic journey or looking to overcome a weight loss plateau,
+                          our product is designed to boost your metabolism and support efficient fat
+                          breakdown, making every step of your weight loss journey more effective.
+                        </p>
+
+                        <h3 style="margin-top: 2rem;">Easy to Incorporate into Your Routine</h3>
+                        <p>
+                          Our Ketogenic Weight Loss Support Supplement fits seamlessly into your daily
+                          routine. Simply take the recommended dosage with water, and let the powerful
+                          combination of ingredients work its magic. No need for complicated meal plans or
+                          restrictive diets – we're here to complement your efforts effortlessly.
+                        </p>
+
+                        <h3 style="margin-top: 2rem;">Trusted and Recommended</h3>
+                        <p>
+                          Join countless individuals who have successfully achieved their weight loss goals
+                          with our Ketogenic Weight Loss Support Supplement. Backed by positive reviews and
+                          recommendations, our product is trusted by those who are serious about transforming
+                          their bodies and lives.
+                        </p>
+
+                        <h3 style="margin-top: 2rem;">Embark on your ketogenic journey with confidence</h3>
+                        <p>
+                          Supported by the science-backed formulation of our Ketogenic Weight Loss Support
+                          Supplement. Reveal the best version of yourself – a healthier, more energized, and
+                          confident you. Order now and take the first step towards a slimmer, more vibrant
+                          future!
+                        </p>
+                      </div>
+                      <div class="tab-pane" id="proTabs2">
+                        <p>
+                          Explore more about our Ketogenic Weight Loss Support Supplement with the following
+                          key details:
+                        </p>
+          
+                        <h3 style="margin-top: 2rem;">Usage Instructions</h3>
+                        <p>
+                          Take the recommended dosage daily with water to support your ketogenic lifestyle.
+                          Incorporate into your routine for optimal results.
+                        </p>
+          
+                        <h3 style="margin-top: 2rem;">Ingredients</h3>
+                        <p>
+                          Our supplement features a powerful blend of natural and non-GMO ingredients,
+                          including exogenous ketones, MCT oil, and essential vitamins and minerals. Free from
+                          artificial additives and preservatives.
+                        </p>
+          
+                        <h3 style="margin-top: 2rem;">Benefits</h3>
+                        <p>
+                          - Accelerates fat burning and supports ketosis<br />
+                          - Provides sustained energy and mental clarity<br />
+                          - Enhances metabolism for effective weight loss<br />
+                          - Trusted by individuals on their ketogenic journey
+                        </p>
+          
+                        <h3 style="margin-top: 2rem;">Caution</h3>
+                        <p>
+                          Consult with a healthcare professional before starting any new dietary supplement,
+                          especially if you have pre-existing health conditions or are on medication.
+                        </p>
+          
+                        <h3 style="margin-top: 2rem;">Storage</h3>
+                        <p>
+                          Store in a cool, dry place away from direct sunlight. Keep out of reach of children.
+                        </p>
+          
+                        <h3 style="margin-top: 2rem;">Quality Assurance</h3>
+                        <p>
+                          Our Ketogenic Weight Loss Support Supplement is manufactured in a facility that
+                          follows strict quality control standards. Each batch is tested for purity and
+                          potency.
+                        </p>
+          
+                        <h3 style="margin-top: 2rem;">Customer Reviews</h3>
+                        <p>
+                          Read what our satisfied customers have to say about their experiences with our
+                          Ketogenic Weight Loss Support Supplement. Real stories, real results!
+                        </p>
+                      </div>
+                      <div class="tab-pane" id="proTabs3">
+                        <h3>Shipping</h3>
+                        <p>
+                          Packages will usually be handed over to the courier within one working day from a
+                          successful order and will arrive within 3-5 business days with standard shipping and
+                          may come with tracking, please check your inbox for your shipping confirmation
+                          email. Please be advised that shipments are not sent out on Saturdays, Sundays, or
+                          any Holidays. We do not guarantee arrival dates or times but aim to get your order
+                          to your door as soon as we can. Delivery time for orders will vary depending on the
+                          location and will be specified in the confirmation email. If you feel you are
+                          experiencing any delay in the delivery of your product, you may contact our customer
+                          care department at 855-880-2548 or [email protected]. If for some reason you do not
+                          receive the product after the time period specified in your confirmation email, we
+                          recommend that you contact customer support at 855-880-2548
+                        </p>
+                        <h3 style="margin-top: 3rem;">Returns</h3>
+                        <p>
+                          All orders are secured with a 30-Day Money Back Guarantee. To request a refund,
+                          simply contact us at either 855-880-2548 or [email protected] Please do not send
+                          back packages without consulting our customer service team first as this may cause
+                          delays in any refunds that may be issued. Our customer support representatives will
+                          be happy to help with instructions on how to return your order to our warehouse and
+                          receive your refund. We look forward to assisting you.
+                        </p>
+                      </div>
+                      <div class="tab-pane" id="proTabs4">
+                        <div id="shopify-product-reviews" data-id="9684507336">
+                          <h3 style="margin-left: -15px;">Reviews (2)</h3>
+                          <div class="review">
+                            <div class="row no-gutters">
+                              <div class="col-auto">
+                                <h4><a href="#">Sarah J.</a></h4>
+                                <div class="ratings-container">
+                                  <div class="ratings">
+                                    <div class="ratings-val" style="width: 80%">
+                                    </div>
+                                    <!-- End .ratings-val -->
+                                  </div>
+                                  <!-- End .ratings -->
+                                </div>
+                                <!-- End .rating-container -->
+                                <span class="review-date">6 days ago</span>
+                              </div>
+                              <!-- End .col -->
+                              <div class="col">
+                                <h4>Good, perfect size</h4>
+
+                                <div class="review-content">
+                                  <p>
+                                    I have tried various supplements on my keto journey, but none compare to
+                                    this one! The Advanced Ketogenic Formula really kicked my fat burning into
+                                    high gear. I felt a noticeable increase in energy, and the mental clarity is
+                                    a game-changer. Highly recommend for anyone serious about reaching their
+                                    weight loss goals.
+                                  </p>
+                                </div>
+                                <!-- End .review-content -->
+
+                                <!-- End .review-action -->
+                              </div>
+                              <!-- End .col-auto -->
+                            </div>
+                            <!-- End .row -->
+                          </div>
+
+                          <div class="review">
+                            <div class="row no-gutters">
+                              <div class="col-auto">
+                                <h4><a href="#">Jason M</a></h4>
+                                <div class="ratings-container">
+                                  <div class="ratings">
+                                    <div class="ratings-val" style="width: 100%"></div>
+                                  </div>
+                                </div>
+                                <span class="review-date">5 days ago</span>
+                              </div>
+                              <div class="col">
+                                <h4>Very good</h4>
+
+                                <div class="review-content">
+                                  <p>
+                                    I've struggled with energy crashes and feeling sluggish on other diets, but
+                                    since incorporating this Ketogenic Weight Loss Support Supplement, I've
+                                    experienced a consistent boost in energy throughout the day. The natural
+                                    ingredients give me confidence in what I'm putting into my body. It's been a
+                                    key player in my successful weight loss journey!
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                  <section class="proRelated">
+                    <h3 class="bingoHomeTitle">Related Products</h3>
+                    <div id="relatedProducts" class="bingoProducts">
+                      <Products product={products} />
+                    </div>
+                  </section>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </div>
+  </body>
+</Layout>
+<!-- <script id="bingoJsQty" is:inline>
+  <div class="bingoJsQty">
+    <button
+      type="button"
+      class="bingoQtyAdjust bingoQtyAdjustMinus"
+      data-id="{{id}}"
+      data-qty="{{itemMinus}}"
+    >
+      <span class="txtFallback">&minus;</span>
+    </button>
+    <input
+      type="text"
+      class="bingoQtyNum"
+      value="{{itemQty}}"
+      min="1"
+      data-id="{{id}}"
+      aria-label="quantity"
+      pattern="[0-9]*"
+      name="{{inputName}}"
+      id="{{inputId}}"
+    />
+    <button
+      type="button"
+      class="bingoQtyAdjust bingoQtyAdjustPlus"
+      data-id="{{id}}"
+      data-qty="{{itemAdd}}"
+    >
+      <span class="txtFallback">+</span>
+    </button>
+  </div>
+</script> -->
+
+<style>
+  .bingoProducts {
+    display: flex;
+  }
+</style>
+
+<script is:inline src="/script/cart.js"></script>
+<script is:inline>
+  function setProduct() {
+    const product = getSelectedProduct();
+    if (!product) {
+      const newUrl =
+        window.location.protocol + "//" + window.location.host + "/";
+      window.location.href = newUrl;
+    }
+
+    document.querySelector(".product-name").innerHTML = product.productName;
+    document.getElementById("product-name").innerHTML = product.productName;
+    document.getElementById("product-description").innerHTML =
+      product.productDescription;
+    document.getElementById("productPrice").innerHTML =
+      "$" + product.totalPrice.toFixed(2);
+    document.getElementById("ProductPhotoImg").src = product.productImage;
+    document.getElementById("retailPrice").innerHTML = product.retailPrice;
+  }
+
+  function getCookie(name) {
+    const cookieArr = document.cookie.split(";");
+
+    for (let i = 0; i < cookieArr.length; i++) {
+      let cookie = cookieArr[i].trim();
+      if (cookie.startsWith(name + "=")) {
+        return decodeURIComponent(cookie.substring(name.length + 1));
+      }
+    }
+
+    return null;
+  }
+
+  function setCookie(name, value) {
+    document.cookie = encodeURIComponent(name) + "=" + encodeURIComponent(value) + "; path=/";
+  }
+
+  function addItemToCart(newItem) {
+    let cart = getCookie('cartItems');
+    cart = cart ? JSON.parse(cart) : [];
+
+    // Verificar se o item já está no carrinho
+    let existingItem = cart.find(item => item.productId === newItem.productId);
+
+    if (existingItem) {
+      // Atualizar a quantidade do item existente
+      existingItem.qty += newItem.qty;
+    } else {
+      // Adicionar o novo item ao carrinho
+      cart.push(newItem);
+    }
+
+    // Atualizar o cookie com os novos itens do carrinho
+    setCookie('cartItems', JSON.stringify(cart));
+  }
+
+  function addProductToCart() {
+    const product = getSelectedProduct();
+    cartItem = getItem(product);
+
+    addItemToCart(cartItem);
+    
+    addItem(cartItem);
+    const newUrl =
+      window.location.protocol + "//" + window.location.host + "/cart";
+    window.location.href = newUrl;
+  }
+
+  function getItem(product) {
+    return {
+      productId: product.productId,
+      totalPrice: product.totalPrice,
+      shippingPrice: product.shippingPrice,
+      productType: product.productType,
+      productName: product.productName,
+      productImage: product.productImage,
+      productDescription: product.productDescription,
+      qty: product.qty,
+      retailPrice: product.retailPrice,
+      unitPrice: product.unitPrice,
+      savings: product.savings,
+      total: product.total,
+    };
+  }
+
+  setProduct();
+  updMiniCart();
+</script>

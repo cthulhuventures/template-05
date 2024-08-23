@@ -1,0 +1,255 @@
+---
+import Footer from "../components/Footer.astro"
+import Header from "../components/Header.astro"
+import Products from "../components/Products.astro"
+import Layout from "../layouts/Layout.astro"
+
+import { Api } from "../backend/api";
+const api = new Api();
+
+const products = await api.getPrice();
+---
+
+<Layout title="Boost worthy">
+  <body
+      class="template-index"
+    >
+      <div id="cartDrawer" class="drawer drawerRight">
+        <div class="bingoCartTitle">
+          <span>Shopping cart</span>
+          <div class="close">
+            <span>&times;</span>
+          </div>
+        </div>
+        <div id="cartContainer"></div>
+      </div>
+      <div id="pageContainer" class="isMoved">
+        <div class="shopify-section">
+          <Header />
+        </div>
+
+        <main>
+          <div class="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/imgs/control.png" alt="Slide 1">
+                <div class="carousel-caption">
+                  <!-- <h2>WE PRIORITIZE YOUR WELL-BEING</h2>
+                  <p>NATURAL & SAFE INGREDIENTS!</p> -->
+                  <a href="/shop" class="btn">Explore now</a>
+                </div>
+              </div>
+              <!-- <div class="carousel-item">
+                <img src="/imgs/slider-2.png" alt="Slide 2">
+                <div class="carousel-caption">
+                  <h2>EMBARK ON YOUR KETOGENIC JOURNEY</h2>
+                  <p>TRUSTED & RECOMMENDED!</p>
+                  <a href="/shop" class="btn">Explore now</a>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/imgs/slide-2.png" alt="Slide 3">
+                <div class="carousel-caption">
+                  <h2>INTRODUCING OUR REVOLUTIONARY KETOGENIC</h2>
+                  <p>WEIGHT LOSS & ENERGY BOOST</p>
+                  <a href="/shop" class="btn">Explore now</a>
+                </div>
+              </div> -->
+            </div>
+            <!-- <a class="carousel-control prev" onclick="prevSlide()">&#10094;</a>
+            <a class="carousel-control next" onclick="nextSlide()">&#10095;</a> -->
+          </div>
+  
+          <div
+            class="shopify-section"
+          >
+            <div class="maxFullHTML">
+              <div class="maxHTMLContent">
+                
+                <div class="maxBanner">
+                  <div class="bingoBanner">
+                    <div class="effectThree">
+                      <a href="/shop" title="Shop All">
+                        <img
+                          class="img-responsive"
+                          alt="banner"
+                          src="/imgs/product1.png"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="maxBanner">
+                  <div class="bingoBanner">
+                    <div class="effectThree">
+                      <a href="/shop" title="Shop All">
+                        <img
+                          class="img-responsive"
+                          alt="banner"
+                          src="/imgs/product2.png"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="maxBanner">
+                  <div class="bingoBanner">
+                    <div class="effectThree">
+                      <a href="/shop" title="Shop All">
+                        <img
+                          class="img-responsive"
+                          alt="banner"
+                          src="/imgs/product3.png"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div
+            class="shopify-section"
+          >
+            <div class="productTabsHome">
+              <div class="maxContainer">
+                <div class="bingoProducts">
+                  <div class="bingoContent">
+                    <Products product={products} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <Footer/>
+      </div>
+      
+  </body>
+</Layout>
+
+<style>
+  h2 {
+    font-size: 4.5rem;
+  }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .carousel {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .carousel-item {
+    min-width: 100%;
+    position: relative;
+  }
+
+  .carousel-item img {
+    width: 100%;
+  }
+
+  .carousel-caption {
+    position: absolute;
+    bottom: 14%;
+    left: 11.5%;
+    color: #fff;
+    text-align: start;
+    line-height: 3;
+    z-index: 1;
+  }
+
+  .carousel-caption > p {
+    font-size: 3rem;
+  }
+
+  .carousel-caption .btn {
+    border: 1px solid;
+    border-radius: 10px;
+    width: 15%;
+    background-color: #000;
+    color: #fff;
+  }
+
+  .carousel-control {
+    position: absolute;
+    top: 60%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    color: #fff;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    left: 87%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .carousel-caption {
+      bottom: 21%;
+      left: 18%;
+      line-height: 1;
+      width: 40%;
+    }
+
+    .carousel-caption > p {
+      font-size: 1.2rem;
+    }
+
+    .carousel-caption > h2 {
+      font-size: 1.8rem;
+    }
+
+    .carousel-caption .btn {
+      width: 80%;
+    }
+  }
+</style>
+
+<script is:inline>
+  let currentIndex = 0;
+  
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-item');
+    const totalSlides = slides.length;
+  
+    if (index >= totalSlides) {
+      currentIndex = 0;
+    } else if (index < 0) {
+      currentIndex = totalSlides - 1;
+    } else {
+      currentIndex = index;
+    }
+  
+    const offset = -currentIndex * 100;
+    document.querySelector('.carousel-inner').style.transform = `translateX(${offset}%)`;
+  }
+  
+  function nextSlide() {
+    showSlide(currentIndex + 1);
+  }
+  
+  function prevSlide() {
+    showSlide(currentIndex - 1);
+  }
+  
+
+  setInterval(() => {
+    nextSlide();
+  }, 5000); // 30 segundos
+</script>
