@@ -27,8 +27,10 @@ if (Astro.request.method === 'POST') {
       userLead.address2 = data.get('shippingAddress2');
       userLead.city = data.get('shippingCity');
       userLead.state = data.get('shippingState');
+      userLead.country = data.get('country');
       userLead.postalCode = data.get('shippingZipCode');
       userLead.email = data.get('shippingEmail');
+      userLead.phone = data.get('phone');
 
       const lead = await api.importLead({
         sessionId: sessionId || '',
@@ -39,7 +41,9 @@ if (Astro.request.method === 'POST') {
         zipCode: userLead.postalCode || '',
         city: userLead.city || '',
         state: userLead.state,
+        country: userLead.country,
         emailAddress: userLead.email,
+        phoneNumber: userLead.phone || '',
       });
       Astro.cookies.set(
         '__u',
@@ -49,8 +53,10 @@ if (Astro.request.method === 'POST') {
       );
       const user = lead.message;
       if (!user.orderId || user.orderId === undefined) {
-        return Astro.redirect('/lp');
+        return Astro.redirect('/');
       }
+
+      console.log('USER', user)
 
       const checkout: any = {
         sessionId,
@@ -67,12 +73,14 @@ if (Astro.request.method === 'POST') {
         checkout.firstName = user.firstName;
         checkout.lastName = user.lastName;
         checkout.emailAddress = user.emailAddress;
+        checkout.phoneNumber = user.phoneNumber;
         checkout.address1 =
           user.address1 === 'undefined' ? '' : user.address1 || '';
         checkout.address2 =
           user.address2 === 'undefined' ? '' : user.address2 || '';
         checkout.city = user.city === 'undefined' ? '' : user.city || '';
         checkout.state = user.state;
+        checkout.country = user.country === 'undefined' ? '' : user.country || '';
         checkout.postalCode =
           user.postalCode === 'undefined' ? '' : user.postalCode || '';
       } else {
@@ -82,10 +90,12 @@ if (Astro.request.method === 'POST') {
         checkout.address1 = data.get('billingAddress');
         checkout.city = data.get('billingCity');
         checkout.state = data.get('billingProvince');
+        checkout.country = data.get('billingCountry');
         checkout.postalCode = data.get('billingZipCode');
         checkout.shipFirstName = user.firstName;
         checkout.shipLastName = user.lastName;
         checkout.emailAddress = user.emailAddress;
+        checkout.phoneNumber = user.phoneNumber;
         checkout.shipAddress1 =
           user.address1 === 'undefined' ? '' : user.address1 || '';
         checkout.shipAddress2 =
@@ -97,9 +107,11 @@ if (Astro.request.method === 'POST') {
       }
 
       const response = await api.importOrder(checkout);
+
+      console.log(checkout)
       
       const order =  await api.getOrder(user.orderId, checkout, cartProducts);
-      console.log(order.message.data[0])
+      console.log('ORDER', order.message.data[0])
       Astro.cookies.set('getOrder', JSON.stringify(order.message.data[0]), {
         path: '/'
       });
@@ -132,7 +144,7 @@ if (Astro.request.method === 'POST') {
           <input type="hidden" id="type" name="type" value="payment-form">
           <section class="contact">
             <h3>Contact</h3>
-            <input type="email" id="shippingEmail" name="shippingEmail" placeholder="Email or mobile phone number" />
+            <input type="email" id="shippingEmail" name="shippingEmail" placeholder="Email" />
           </section>
 
           <section class="delivery">
@@ -142,6 +154,13 @@ if (Astro.request.method === 'POST') {
               <input type="text" id="shippingFirstName" name="shippingFirstName" placeholder="First name" required />
               <input type="text" id="shippingLastName" name="shippingLastName" placeholder="Last name" required />
             </div>
+            <input
+              type="tel"
+              class="form-control postal-code-input"
+              name="phone"
+              id="phone"
+              placeholder="Phone number"
+            />
             <input 
               type="text" 
               id="shippingZipCode" 
@@ -322,6 +341,7 @@ if (Astro.request.method === 'POST') {
     </div>
   </body>
 </Layout>
+
 <style is:inline>
   body {
     font-family: Arial, sans-serif;
@@ -486,7 +506,7 @@ if (Astro.request.method === 'POST') {
   }
 </style>
 
-<script is:inline src="/scripts/cart.js"></script>
+<script is:inline src="/script/cart.js"></script>
 <script is:inline>
   const statesByCountry = {
     Canada: [
@@ -665,4 +685,28 @@ if (Astro.request.method === 'POST') {
       return sum % 10 === 0;
     }
   });
+</script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.4/build/js/intlTelInput.min.js"></script>
+<script is:inline>
+  const input = document.querySelector('#phone');
+  const iti = window.intlTelInput(input, {
+    utilsScript:
+      'https://cdn.jsdelivr.net/npm/intl-tel-input@21.0.4/build/js/utils.js',
+    initialCountry: 'ca',
+    strictMode: true,
+    onlyCountries: ['ca', 'gb'],
+  });
+  function updatePhoneNumberInput() {
+    const phoneNumber = iti.getNumber(intlTelInputUtils.numberFormat.E164);
+    document.querySelector('#phone').value = phoneNumber;
+  }
+  input.addEventListener('change', updatePhoneNumberInput);
+  input.addEventListener('keyup', updatePhoneNumberInput);
+
+  const divPhone = document.querySelector('.iti');
+  const inputPhone = document.querySelector('.iti__tel-input');
+  divPhone.style.width = '100%';
+  divPhone.style.margin = '5px 0 10px 0';
+  inputPhone.style.border = '1px solid #ddd';
+  inputPhone.style.borderRadius = '5px';
 </script>

@@ -46,6 +46,7 @@ interface ICheckout {
 	postalCode: string
 	city: string
 	state: string
+  country: string
 	billShipSame: boolean
 	cardMonth: string
 	cardSecurityCode: string
@@ -67,6 +68,7 @@ interface ICheckout {
 	shipPostalCode?: string
 	shipCity?: string
 	shipState?: string
+  shipCountry?: string
 	shipFirstName?: string
 	shipLastName?: string
 	salesUrl?: string
@@ -181,6 +183,7 @@ export class Api {
 	}
 
 	public async getOrder(orderId: string, checkout: ICheckout, items: ICartItem[]): Promise<IApiResponse> {
+    console.log('checkout', checkout)
 		const methodUrl = 'order/query'
 		const args = `orderId=${orderId}&campaignId=${this.campaignId}`
 		let url = this.baseUrl.replace('{{methodUrl}}', methodUrl).replace('{{args}}', args)
@@ -215,7 +218,7 @@ export class Api {
                   "address2": null,
                   "city": checkout.city,
                   "state": checkout.state,
-                  "country": "CA",
+                  "country": checkout.country,
                   "postalCode": checkout.postalCode,
                   "shipFirstName": checkout.shipFirstName,
                   "shipLastName": checkout.shipLastName,
@@ -224,7 +227,7 @@ export class Api {
                   "shipAddress2": null,
                   "shipCity": checkout.shipCity,
                   "shipState": checkout.shipState,
-                  "shipCountry": "CA",
+                  "shipCountry": checkout.shipCountry,
                   "shipPostalCode": checkout.shipPostalCode,
                   "paySource": "CREDITCARD",
                   "cardType": "TESTCARD",
@@ -283,6 +286,7 @@ export class Api {
   const mockApi = process.env.MOCK || import.meta.env.MOCK || true
 
   if (mockApi) {
+    console.log('MOCK', getOrder.message.data[0])
     const response = new Response(JSON.stringify(getOrder), {
       headers: {
         'Content-Type': 'application/json'
@@ -782,7 +786,7 @@ export class Api {
           totalPrice: 69.95,
           shippingPrice: 9.00,
           productType: 'type',
-          productName: 'BOOST HEALTH 1 BOTTLE',
+          productName: 'BOOST WAIST 1 BOTTLE',
           productImage: '/imgs/1bottle.png',
           productDescription:
             "The key to unlocking your body's full fat-burning potential and achieving your weight loss goals with ease!",
@@ -798,7 +802,7 @@ export class Api {
           totalPrice: 95.95,
           shippingPrice: 0,
           productType: 'type',
-          productName: 'BOOST HEALTH 2 BOTTLES',
+          productName: 'BOOST WAIST 2 BOTTLES',
           productImage: '/imgs/2bottle.png',
           productDescription:
             "The key to unlocking your body's full fat-burning potential and achieving your weight loss goals with ease!",
@@ -814,7 +818,7 @@ export class Api {
           totalPrice: 135.95,
           shippingPrice: 0,
           productType: 'type',
-          productName: 'BOOST HEALTH 3 BOTTLES',
+          productName: 'BOOST WAIST 3 BOTTLES',
           productImage: '/imgs/3bottle.png',
           productDescription:
             "The key to unlocking your body's full fat-burning potential and achieving your weight loss goals with ease!",

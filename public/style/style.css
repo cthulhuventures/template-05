@@ -947,7 +947,7 @@ address {
 }
 @media screen and (min-width: 1200px) {
   .container {
-    width: 1200px;
+    width: 1350px;
   }
 }
 .container-fluid {
@@ -10586,7 +10586,6 @@ button.close {
 }
 .proDetailInfo {
   margin: 50px 0;
-  background-color: #fff;
 }
 .proDetailInfo img {
   display: block;
@@ -10607,8 +10606,7 @@ button.close {
   vertical-align: middle;
 }
 .proDetailInfo ul.nav-tabs > li:after {
-  content: "\f0d7";
-  font-family: 'FontAwesome';
+  content: " ";
   color: purple;
   position: absolute;
   bottom: -7px;
@@ -10617,6 +10615,7 @@ button.close {
   border-top: 7px solid transparent;
   border-left: 11px solid transparent;
   border-right: 11px solid transparent;
+  display: none;
 }
 .proDetailInfo ul.nav-tabs > li a {
   padding: 5px 0;
@@ -10636,6 +10635,7 @@ button.close {
   border: 0;
 }
 .proDetailInfo ul.nav-tabs > li.active:after {
+  display: block;
   border-top-color: #A575A9;
 }
 .proDetailInfo ul.nav-tabs > li.active a,

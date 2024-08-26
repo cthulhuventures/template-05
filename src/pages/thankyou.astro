@@ -31,16 +31,16 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
               <a href="/" itemprop="url"
               ><img
                 class="img-responsive logo-responsive"
-                src="/imgs/BH_Logo_1.png"
+                src="/imgs/logo2.png"
                 alt="Banner image"
                 itemprop="logo"
               />
               </a>
               <div class="email_n_mob" style="width: 100%;">
                   <ul style="float: right;">
-                      <li><a href="tel:8335612178">(833) 561-2178</a></li>
+                      <li><a href="tel:8442392569">(844) 239-2569</a></li>
                       <li style="color: #B182B4;">|</li>
-                      <li><a href="support@boosthealthstore.com">support@boosthealthstore.com</a></li>
+                      <li><a href="support@boostwaistcontrol.com">support@boostwaistcontrol.com</a></li>
                   </ul>
               </div>
           </div>
@@ -55,7 +55,7 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
                           <h5 class="Todrid formobile">Order Id: {order.orderId}</h5>
                           <h3>THANK YOU,</h3>
                           <p>We are so excited to share this amazing product with you! We are positive you will enjoy
-                              the benefits and fat burning experience that Boost Health will give you! We can't wait for you
+                              the benefits and fat burning experience that Boost Waist will give you! We can't wait for you
                               to see the results!</p>
                           <p>You will receive an email with additional information about your order. If you do not
                               receive an email please check your junk/spam folder.</p>
@@ -97,7 +97,10 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
                                   <p>Last Name: {order.name}</p>
                               </li>
                               <li>
-                                  <p>Email or phone number: {order.emailAddress}</p>
+                                  <p>Email {order.emailAddress}</p>
+                              </li>
+                              <li>
+                                <p>Phone: {order.phoneNumber}</p>
                               </li>
                               <li>
                                   <p>Address: {order.address1}</p>
@@ -125,7 +128,7 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
     <footer class="main_footer">
       <div class="footer_top">
           <div class="footer-container">
-              <p>{`Copyright ${year} - Boost Health. All rights reserved.`}
+              <p>{`Copyright ${year} - Boost Waist. All rights reserved.`}
               </p>
               <p><strong>*IMPORTANT</strong>: These statements have not been evaluated by the FDA. This product is not
                   intended to diagnose, treat, cure or prevent any disease. Information in this site is provided for
@@ -212,7 +215,7 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
 
 <style>
 
-  @font-face {
+  /* @font-face {
     font-family: "Gilroy-Bold";
     src: url("/fonts/Gilroy-Bold.woff2") format("woff2"),
       url("/fonts/Gilroy-Bold.woff") format("woff");
@@ -228,7 +231,7 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
     font-weight: 500;
     font-style: normal;
     font-display: swap;
-  }
+  } */
 
   a {
     text-decoration: none;
@@ -431,12 +434,12 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
   .email_n_mob {
     text-align: left;
     float: right;
-    font-family: Montserrat;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px;
   }
   .email_n_mob li {
     display: inline-block;
-    font-family: Montserrat;
+    font-family: 'Poppins', sans-serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 28px;
@@ -850,20 +853,20 @@ totalShippingPrice = parseFloat(totalShippingPrice.toFixed(2));
   .thnkText h3 {
     font-size: 25px;
     color: #292929;
-    font-family: 'Gilroy-bold';
+    font-family: 'Poppins', sans-serif;
   }
 
   .thnkText p {
     font-size: 15px;
     line-height: 1.5;
-    font-family: 'Gilroy-medium';
+    font-family: 'Poppins', sans-serif;
     color: #000;
   }
 
   .thnkText h4 {
     font-size: 20px;
     color: #292929;
-    font-family: 'Gilroy-bold';
+    font-family: 'Poppins', sans-serif;
     margin: 16px 0 8px 0;
   }
 

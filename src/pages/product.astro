@@ -159,25 +159,25 @@ const products = await api.getPrice();
                   <section class="proDetailInfo">
                     <ul class="nav nav-tabs">
                       <li class="nav-item">
-                        <a class="nav-link" href="#proTabs1" data-toggle="tab" >Details</a>
+                        <a class="nav-link" onclick="openTab(this, 'proTabs1')" href="#proTabs1" data-toggle="tab" >Details</a>
                       </li>
                       <li class="nav-item">
                         <a
                           class="nav-link"
                           href="#proTabs2" 
                           data-toggle="tab"
-                          
+                          onclick="openTab(this, 'proTabs2')"
                         >
                           Additional Information
                         </a>
                       </li class="nav-item">
                       <li class="nav-item">
-                        <a class="nav-link" href="#proTabs3" data-toggle="tab" 
+                        <a class="nav-link" onclick="openTab(this, 'proTabs3')" href="#proTabs3" data-toggle="tab" 
                           >Shipping & Returns</a
                         >
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#proTabs4" data-toggle="tab" >Reviews</a>
+                        <a class="nav-link" href="#proTabs4" data-toggle="tab" onclick="openTab(this, 'proTabs4')" >Reviews</a>
                       </li>
                     </ul>
                     <div class="tab-content">
@@ -503,18 +503,34 @@ const products = await api.getPrice();
   setProduct();
   updMiniCart();
 
-  // function openTab(evt, tabId) {
-  //   var i, tabcontent, tablinks;
-  //   tabcontent = document.getElementsByClassName("tab-pane");
-  //   for (i = 0; i < tabcontent.length; i++) {
-  //       tabcontent[i].classList.remove("active");
-  //   }
-  //   tablinks = document.getElementsByClassName("nav-link");
-  //   for (i = 0; i < tablinks.length; i++) {
-  //       tablinks[i].classList.remove("active");
-  //   }
-  //   document.getElementById(tabId).classList.add("active");
-  //   evt.currentTarget.classList.add("active");
-  // }
+  function openTab(evt, tabId) {
+    console.log('EVENTO', evt); // Verifica o evento
+    console.log('EVENTO', evt.parentElement); // Verifica o evento
+    let i, tabcontent, tablinks, tabItems;
+    
+    // Esconde todas as abas
+    tabcontent = document.getElementsByClassName("tab-pane");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+    }
+    
+    // Remove a classe 'active' de todos os links de navegação
+    tablinks = document.getElementsByClassName("nav-link");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }
+
+    // Remove a classe 'active' de todos os itens da lista (li)
+    tabItems = document.querySelectorAll('.proDetailInfo ul.nav-tabs > li');
+    for (i = 0; i < tabItems.length; i++) {
+        tabItems[i].classList.remove("active");
+    }
+
+    // Adiciona a classe 'active' à aba atual e ao item da lista correspondente
+    document.getElementById(tabId).classList.add("active");
+    evt.classList.add("active");
+    evt.parentElement.classList.add("active");
+    console.log(evt.parentElement);
+}
   
 </script>
